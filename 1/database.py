@@ -1,6 +1,6 @@
 # -*- coding:utf8 -*- 
 
-import MySQLdb
+
 from MySQLdb import *
 from classification import *
 # import sae.const
