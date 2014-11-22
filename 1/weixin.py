@@ -21,8 +21,8 @@ def wechat_auth():
     else:
         rec = request.stream.read()
         xml_rec = ET.fromstring(rec)
-        toUser = xml_rec.find('ToUserName').text
-        fromUser = xml_rec.find('FromUserName').text
+        tou = xml_rec.find('ToUserName').text
+        fromu = xml_rec.find('FromUserName').text
         content = xml_rec.find('Content').text
         xml_rep = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
         response = make_response(xml_rep % (fromu,tou,str(int(time.time())), content))
