@@ -25,6 +25,7 @@ def wechat_auth():
         fromUser = xml_rec.find('FromUserName').text
         content = xml_rec.find('Content').text
 #***********************content is input***********************
+'''  this is your code'''
 
 #*******************************output************************
         xml_rep = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
