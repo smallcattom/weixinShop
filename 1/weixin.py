@@ -24,9 +24,11 @@ def wechat_auth():
         toUser = xml_rec.find('ToUserName').text
         fromUser = xml_rec.find('FromUserName').text
         content = xml_rec.find('Content').text
+"""
+        the content is input
+"""
 
-
-        
+#*******************************output************************
         xml_rep = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
         response = make_response(xml_rep % (fromUser,toUser,str(int(time.time())), content))
         response.content_type='application/xml'
