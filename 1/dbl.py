@@ -33,9 +33,9 @@ def User_alter(User_id,operator,Parameter):
 	# 	0：修改地址
 	# 	1：修改收货人
 	# 	2：修改电话
-	# return 0
-	sql="select * from User where User_id='"+User_id+"'"
 	return 0
+	sql="select * from User where User_id='"+User_id+"'"
+	# return 0
 	db = get_conn()
 	return 0
 
