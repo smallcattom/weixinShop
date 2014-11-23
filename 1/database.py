@@ -24,10 +24,10 @@ def User_add(Name,Addr,Tel):
 	return user_tmp
 
 def User_alter(User_id,operator,Parameter):
-	"""修改用户,成功返回用户信息，失败返回1
-		0：修改地址
-		1：修改收货人
-		2：修改电话"""
+	# 修改用户,成功返回用户信息，失败返回1
+	# 	0：修改地址
+	# 	1：修改收货人
+	# 	2：修改电话
 	sql="select * from User where User_id='"+User_id+"'"
 	db = MySQLdb.connect(host,user,password,database)
 	cursor = db.cursor()
