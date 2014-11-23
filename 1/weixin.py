@@ -8,6 +8,9 @@ from database import *
 app = Flask(__name__)
 app.debug=True
 
+
+SUCCESS = 'Success'
+FAIL = 'Fail'
 # h口令 对应的输出
 msg = '命令格式:\n用户个人信息修改:\n1 选项id  新内容     注：0：地址 1：名字 2：电话\n商品查找:\n2 商品名\n下单:\n3\n商品库存查询:\n4 商品名\n删除购物车商品:\n5 商品名 数量\n查看购物车:\n6\n添加购物车:\n7  商品名 数量\n留言:\n 8 留言'
 
