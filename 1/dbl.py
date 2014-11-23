@@ -1,18 +1,14 @@
 # -*- coding:utf8 -*- 
 
-import MYSQLdb
-from MYSQLdb import *
+from MySQLdb import *
 from classification import *
 import sae.const
-
+# class DBA:
+# 	def __init__():
 host = sae.const.MYSQL_HOST
 user = sae.const.MYSQL_USER
 password = sae.const.MYSQL_PASS
 database=sae.const.MYSQL_DB
-
-def get_conn():
-  conn = MySQLdb.connect(host=sae.const.MYSQL_HOST,user=sae.const.MYSQL_USER,passwd=sae.const.MYSQL_PASS,db=sae.const.MYSQL_DB,port=int(sae.const.MYSQL_PORT),charset='utf8')
-  return conn
 
 def User_add(Name,Addr,Tel):
 	#添加用户,成功返回用户信息，失败返回1
@@ -35,10 +31,8 @@ def User_alter(User_id,operator,Parameter):
 	# 	2：修改电话
 	return 0
 	sql="select * from User where User_id='"+User_id+"'"
-	# return 0
-	db = get_conn()
+	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 	return 0
-
 	cursor = db.cursor()
 	cursor.execute(sql)
 	info=cursor.fetchone()
@@ -215,5 +209,5 @@ def cart_buy(User_id,Note):
 	db.close()
 	return 0
 
-if __name__ == '__main__':
-	cart_buy("1bcbbf3d-6e15-11e4-8d74-f46d0489f16d","zhang")
+# if __name__ = '__main__':
+# 	cart_buy("1bcbbf3d-6e15-11e4-8d74-f46d0489f16d","zhang")
