@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from database import User_alter
+# from database import User_alter
 
 import time
 from flask import Flask,g,request,make_response
