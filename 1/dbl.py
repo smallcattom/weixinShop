@@ -1,6 +1,7 @@
 # -*- coding:utf8 -*- 
 
-from MySQLdb import *
+import MYSQLdb
+from MYSQLdb import *
 from classification import *
 import sae.const
 # class DBA:
