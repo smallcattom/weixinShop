@@ -16,43 +16,37 @@ from classification import *
 # 	db.close()
 # 	return user_tmp
 
-def User_alter(User_id,operator,Parameter,g):
+def User_alter(User_id,operator,Parameter,cursor):
 	# 修改用户,成功返回用户信息，失败返回1
 	# 	0：修改地址
 	# 	1：修改收货人
 	# 	2：修改电话
 	
 	sql="select * from User where User_id='"+User_id+"'"
-	# return 0
-	# db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
-	g.execute(sql)
-	return 0
-	# cursor = db.cursor()
-	# cursor.execute(sql)
-	# info=cursor.fetchone()
-	# if(type(info)==type(None)):
-	# 	return 1
-	# user_tmp=User()
-	# user_tmp.User_name=info[0]
-	# user_tmp.Addr=info[1]
-	# user_tmp.Tel=info[2]
-
-	# if(operator=="0"):
-	# 	sql="update User set Addr='"+Parameter+"' where User_id='"+User_id+"'"
-	# 	user_tmp.Addr=Parameter
-	# elif (operator=="1"):
-	# 	sql="update User set User_Name='"+Parameter+"' where User_id='"+User_id+"'"
-	# 	user_tmp.Name=Parameter
-	# elif (operator=="2"):
-	# 	sql="update User set Tel='"+Parameter+"' where User_id='"+User_id+"'"
-	# 	user_tmp.Tel=Parameter
-	# else:
-	# 	return 1
-
+	
 	cursor.execute(sql)
-	db.commit()
-	db.close()
-	return user_tmp
+	info=cursor.fetchone()
+	if(type(info)==type(None)):
+		return 1
+	user_tmp=User()
+	user_tmp.User_name=info[0]
+	user_tmp.Addr=info[1]
+	user_tmp.Tel=info[2]
+
+	if(operator=="0"):
+		sql="update User set Addr='"+Parameter+"' where User_id='"+User_id+"'"
+		user_tmp.Addr=Parameter
+	elif (operator=="1"):
+		sql="update User set User_Name='"+Parameter+"' where User_id='"+User_id+"'"
+		user_tmp.Name=Parameter
+	elif (operator=="2"):
+		sql="update User set Tel='"+Parameter+"' where User_id='"+User_id+"'"
+		user_tmp.Tel=Parameter
+	else:
+		return 1
+
+	cursor.execute(sql)	
+	return 0
 
 # def User_info(User_id):
 # 	#查询用户信息,成功返回用户信息，失败返回1
