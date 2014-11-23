@@ -1,4 +1,6 @@
 name: smallcattom
 version: 1
-
+libraries:
+- name: "MYSQLdb"
+  version: "5.1"
 
