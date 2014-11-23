@@ -1,17 +1,6 @@
 # -*- coding:utf8 -*- 
 
-import MySQLdb
 from classification import *
-from flask import Flask,g,request,make_response
-
-from sae.const import (MYSQL_HOST, MYSQL_HOST_S, MYSQL_PORT, MYSQL_USER, MYSQL_PASS, MYSQL_DB)
-@app.before_request
-def before_request():
-    g.db = MySQLdb.connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB, port = int(MYSQL_PORT), charset = 'utf8')
-@app.teardown_request
-def teardown_request(exception):
-    if hasattr(g, 'db'): g.db.close()
-
 
 # def User_add(Name,Addr,Tel):
 # 	#添加用户,成功返回用户信息，失败返回1
@@ -27,7 +16,7 @@ def teardown_request(exception):
 # 	db.close()
 # 	return user_tmp
 
-def User_alter(User_id,operator,Parameter):
+def User_alter(User_id,operator,Parameter,g):
 	# 修改用户,成功返回用户信息，失败返回1
 	# 	0：修改地址
 	# 	1：修改收货人
@@ -36,7 +25,7 @@ def User_alter(User_id,operator,Parameter):
 	sql="select * from User where User_id='"+User_id+"'"
 	# return 0
 	# db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
-	c = g.db.cursor()
+	g.execute(sql)
 	return 0
 	# cursor = db.cursor()
 	# cursor.execute(sql)

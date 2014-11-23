@@ -4,17 +4,17 @@ import time
 from flask import Flask,g,request,make_response
 import hashlib
 import xml.etree.ElementTree as ET
-# import MySQLdb
+import MySQLdb
 app = Flask(__name__)
 app.debug=True
 
-# from sae.const import (MYSQL_HOST, MYSQL_HOST_S, MYSQL_PORT, MYSQL_USER, MYSQL_PASS, MYSQL_DB)
-# @app.before_request
-# def before_request():
-#     g.db = MySQLdb.connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB, port = int(MYSQL_PORT), charset = 'utf8')
-# @app.teardown_request
-# def teardown_request(exception):
-#     if hasattr(g, 'db'): g.db.close()
+from sae.const import (MYSQL_HOST, MYSQL_HOST_S, MYSQL_PORT, MYSQL_USER, MYSQL_PASS, MYSQL_DB)
+@app.before_request
+def before_request():
+    g.db = MySQLdb.connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB, port = int(MYSQL_PORT), charset = 'utf8')
+@app.teardown_request
+def teardown_request(exception):
+    if hasattr(g, 'db'): g.db.close()
 
 
 SUCCESS = 'Success'
@@ -49,10 +49,10 @@ def wechat_auth():
             content = msg
         elif arg[0] == '1': 
             # c = g.db.cursor()
-            if User_alter(fromUser,arg[1],arg[2]):
-                content = FAIL
-            else:
-                content = SUCCESS
+            # if User_alter(fromUser,arg[1],arg[2],g.db.cursor()):
+            #     content = FAIL
+            # else:
+            #     content = SUCCESS
         else:
             content = arg[0]
 #*******************************output************************
