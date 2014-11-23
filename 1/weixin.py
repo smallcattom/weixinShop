@@ -6,7 +6,7 @@ import time
 from flask import Flask,g,request,make_response
 import hashlib
 import xml.etree.ElementTree as ET
-import MYSQLdb
+# import MYSQLdb
 app = Flask(__name__)
 app.debug=True
 # from sae.const import (MYSQL_HOST, MYSQL_HOST_S, MYSQL_PORT, MYSQL_USER, MYSQL_PASS, MYSQL_DB)
