@@ -4,7 +4,7 @@ import time
 from flask import Flask,g,request,make_response
 import hashlib
 import xml.etree.ElementTree as ET
-from database import *
+# from database import *
 app = Flask(__name__)
 app.debug=True
 
