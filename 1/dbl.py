@@ -3,7 +3,8 @@
 from MySQLdb import *
 from classification import *
 import sae.const
-
+# class DBA:
+# 	def __init__():
 host = sae.const.MYSQL_HOST
 user = sae.const.MYSQL_USER
 password = sae.const.MYSQL_PASS
@@ -208,4 +209,4 @@ def cart_buy(User_id,Note):
 	db.close()
 	return 0
 
-cart_buy("1bcbbf3d-6e15-11e4-8d74-f46d0489f16d","zhang")
+# cart_buy("1bcbbf3d-6e15-11e4-8d74-f46d0489f16d","zhang")
