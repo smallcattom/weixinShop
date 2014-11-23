@@ -1,11 +1,10 @@
 # -*- coding:utf-8 -*-
 from dbl import *
-
 import time
 from flask import Flask,g,request,make_response
 import hashlib
 import xml.etree.ElementTree as ET
-import MySQLdb
+# import MySQLdb
 app = Flask(__name__)
 app.debug=True
 
