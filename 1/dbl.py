@@ -9,7 +9,10 @@ host = sae.const.MYSQL_HOST
 user = sae.const.MYSQL_USER
 password = sae.const.MYSQL_PASS
 database=sae.const.MYSQL_DB
-
+def get_conn():
+  conn=MySQLdb.connect(host=sae.const.MYSQL_HOST,user=sae.const.MYSQL_USER,passwd=sae.const.MYSQL_PASS,db=sae.const.MYSQL_DB,port=int(sae.const.MYSQL_PORT),charset='utf8')
+  return conn
+  
 def User_add(Name,Addr,Tel):
 	#添加用户,成功返回用户信息，失败返回1
 	sql="insert into User values(uuid(),"+Name+",0,"+Addr+","+Tel+")"
