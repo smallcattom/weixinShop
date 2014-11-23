@@ -204,5 +204,4 @@ def cart_buy(User_id,Note):
 	db.close()
 	return 0
 
-cart_buy("1bcbbf3d-6e15-11e4-8d74-f46d0489f16d","zhang")
 
