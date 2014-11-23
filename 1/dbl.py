@@ -31,7 +31,7 @@ def User_alter(User_id,operator,Parameter):
 	# 	2：修改电话
 	
 	sql="select * from User where User_id='"+User_id+"'"
-	return 0
+	
 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 	return 0
 	cursor = db.cursor()
