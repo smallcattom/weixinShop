@@ -4,8 +4,7 @@ import time
 from flask import Flask,g,request,make_response
 import hashlib
 import xml.etree.ElementTree as ET
-# from database import *
-import database
+from database import User_alter
 app = Flask(__name__)
 app.debug=True
 
