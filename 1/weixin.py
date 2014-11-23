@@ -40,6 +40,8 @@ def wechat_auth():
                 content = FAIL
             else:
                 content = SUCCESS
+        else:
+            content = arg[0]
 #*******************************output************************
         xml_rep = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
         response = make_response(xml_rep % (fromUser,toUser,str(int(time.time())), content))
