@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+
 import time
 from flask import Flask,g,request,make_response
 import hashlib
