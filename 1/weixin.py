@@ -2,14 +2,8 @@ import time
 from flask import Flask,g,request,make_response
 import hashlib
 import xml.etree.ElementTree as ET
-from database import *
 app = Flask(__name__)
 app.debug=True
-
-SUCCESS = 'Success'
-FAIL = 'Fail'
-
-
 @app.route('/',methods=['GET','POST'])
 def wechat_auth():
     if request.method == 'GET':
@@ -32,20 +26,6 @@ def wechat_auth():
         content = xml_rec.find('Content').text
 #***********************content is input***********************
 #            """  this is your code"""
-        # arg = filter(lambda x:len(x) != 0,content.split(' '))
-        # if arg[0] == 'h':
-        #     content = msg
-        # elif arg[0] == 1:
-        #     if User_alter(fromUser,arg[1],arg[2]):
-        #         content = FAIL
-        #     else:
-        #         content = SUCCESS
-        # elif arg[0] == 2:
-        #     tmp = goods_search(arg[1])
-
-
-
-    
 
 #*******************************output************************
         xml_rep = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
