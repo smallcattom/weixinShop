@@ -2,20 +2,8 @@
 
 from MySQLdb import *
 from classification import *
+from flask import Flask,g,request,make_response
 
-
-from sae.const import (MYSQL_HOST, MYSQL_HOST_S,
-    MYSQL_PORT, MYSQL_USER, MYSQL_PASS, MYSQL_DB
-)
-
-@app.before_request
-def before_request():
-    g.db = MySQLdb.connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS,
-                           MYSQL_DB, port=int(MYSQL_PORT))
-
-@app.teardown_request
-def teardown_request(exception):
-    if hasattr(g, 'db'): g.db.close()
 
 
 # def User_add(Name,Addr,Tel):
@@ -41,7 +29,7 @@ def User_alter(User_id,operator,Parameter):
 	sql="select * from User where User_id='"+User_id+"'"
 	# return 0
 	# db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
-	before_request()
+	c = g.db.cursor()
 	return 0
 	# cursor = db.cursor()
 	# cursor.execute(sql)
