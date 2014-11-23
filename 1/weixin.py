@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-# from dbl import *
+from dbl import *
 
 import time
 from flask import Flask,g,request,make_response
@@ -9,13 +9,13 @@ import MySQLdb
 app = Flask(__name__)
 app.debug=True
 
-from sae.const import (MYSQL_HOST, MYSQL_HOST_S, MYSQL_PORT, MYSQL_USER, MYSQL_PASS, MYSQL_DB)
-@app.before_request
-def before_request():
-    g.db = MySQLdb.connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB, port = int(MYSQL_PORT), charset = 'utf8')
-@app.teardown_request
-def teardown_request(exception):
-    if hasattr(g, 'db'): g.db.close()
+# from sae.const import (MYSQL_HOST, MYSQL_HOST_S, MYSQL_PORT, MYSQL_USER, MYSQL_PASS, MYSQL_DB)
+# @app.before_request
+# def before_request():
+#     g.db = MySQLdb.connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DB, port = int(MYSQL_PORT), charset = 'utf8')
+# @app.teardown_request
+# def teardown_request(exception):
+#     if hasattr(g, 'db'): g.db.close()
 
 
 SUCCESS = 'Success'
@@ -49,11 +49,11 @@ def wechat_auth():
         if arg[0] == 'h':
             content = msg
         elif arg[0] == '1': 
-            c = g.db.cursor()
-            # if User_alter(fromUser,arg[1],arg[2]):
-            #     content = FAIL
-            # else:
-            #     content = SUCCESS
+            # c = g.db.cursor()
+            if User_alter(fromUser,arg[1],arg[2]):
+                content = FAIL
+            else:
+                content = SUCCESS
         else:
             content = arg[0]
 #*******************************output************************
