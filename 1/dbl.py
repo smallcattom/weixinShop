@@ -35,9 +35,10 @@ def User_alter(User_id,operator,Parameter):
 	# 	2：修改电话
 	# return 0
 	sql="select * from User where User_id='"+User_id+"'"
+	return 0
 	db = get_conn()
 	return 0
-	
+
 	cursor = db.cursor()
 	cursor.execute(sql)
 	info=cursor.fetchone()
