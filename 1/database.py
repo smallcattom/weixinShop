@@ -30,6 +30,7 @@ def User_alter(User_id,operator,Parameter):
 	# 	2：修改电话
 	sql="select * from User where User_id='"+User_id+"'"
 	db = MySQLdb.connect(host,user,password,database,port=int(MYSQL_PORT),charset='utf8')
+	return 0
 	cursor = db.cursor()
 	cursor.execute(sql)
 	info=cursor.fetchone()
@@ -39,6 +40,7 @@ def User_alter(User_id,operator,Parameter):
 	user_tmp.User_name=info[0]
 	user_tmp.Addr=info[1]
 	user_tmp.Tel=info[2]
+
 	if(operator=="0"):
 		sql="update User set Addr='"+Parameter+"' where User_id='"+User_id+"'"
 		user_tmp.Addr=Parameter
@@ -50,6 +52,7 @@ def User_alter(User_id,operator,Parameter):
 		user_tmp.Tel=Parameter
 	else:
 		return 1
+
 	cursor.execute(sql)
 	db.commit()
 	db.close()
