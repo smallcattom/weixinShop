@@ -12,7 +12,7 @@ database=sae.const.MYSQL_DB
 def User_add(Name,Addr,Tel):
 	#添加用户,成功返回用户信息，失败返回1
 	sql="insert into User values(uuid(),"+Name+",0,"+Addr+","+Tel+")"
-	db = MySQLdb.connect(host,user,password,database,port=int(MYSQL_PORT),charset='utf8')
+	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 	cursor = db.cursor()
 	cursor.execute(sql)
 	user_tmp=User()
@@ -29,7 +29,7 @@ def User_alter(User_id,operator,Parameter):
 	# 	1：修改收货人
 	# 	2：修改电话
 	sql="select * from User where User_id='"+User_id+"'"
-	db = MySQLdb.connect(host,user,password,database,port=int(MYSQL_PORT),charset='utf8')
+	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 	return 0
 	cursor = db.cursor()
 	cursor.execute(sql)
@@ -61,7 +61,7 @@ def User_alter(User_id,operator,Parameter):
 def User_info(User_id):
 	#查询用户信息,成功返回用户信息，失败返回1
 	sql="select * from User where User_id='"+User_id+"'"
-	db = MySQLdb.connect(host,user,password,database,port=int(MYSQL_PORT),charset='utf8')
+	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 	cursor = db.cursor()
 	cursor.execute(sql)
 	info=cursor.fetchone()
@@ -79,7 +79,7 @@ def User_info(User_id):
 def goods_search(searchstr):
 	#通过mysql like匹配搜索searchstr，并返回一个包含所有结果的Goods类列表
 	sql="select * from Goods where Name like '%"+searchstr+"%' or Description like '%"+searchstr+"%'"
-	db = MySQLdb.connect(host,user,password,database,port=int(MYSQL_PORT),charset='utf8')
+	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 	cursor = db.cursor()
 	cursor.execute(sql)
 	result = cursor.fetchall()
@@ -102,14 +102,14 @@ def cart_creat(User_id):
 	#创建新的购物车(不存在时),返回Cart_id
 	try:
 		sql="insert into Cart values(uuid(),'"+User_id+"',10,now())"
-		db = MySQLdb.connect(host,user,password,database,port=int(MYSQL_PORT),charset='utf8')
+		db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 		cursor = db.cursor()
 		cursor.execute(sql)
 		db.commit()
 	except IntegrityError,e:
 		pass
 	sql="select Cart_id from Cart where User_id='"+User_id+"'"
-	db = MySQLdb.connect(host,user,password,database,port=int(MYSQL_PORT),charset='utf8')
+	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 	cursor = db.cursor()
 	cursor.execute(sql)
 	Cart_id = cursor.fetchone()[0]
@@ -121,7 +121,7 @@ def cart_add(Goods_id,Count,User_id):
 	#添加新的商品到购物车，成功返回0，失败返回1
 	Cart_id=cart_creat(User_id)
 	sql="select Count from CartItem where Cart_id='"+Cart_id+"' and Goods_id='"+Goods_id+"'"
-	db = MySQLdb.connect(host,user,password,database,port=int(MYSQL_PORT),charset='utf8')
+	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 	cursor = db.cursor()
 	cursor.execute(sql)
 	count=cursor.fetchone()
@@ -142,7 +142,7 @@ def cart_add(Goods_id,Count,User_id):
 def cart_get(User_id):
 	#获取购物车内商品，成功返回购物车，失败返回1
 	sql="select Cart_id from Cart where User_id='"+User_id+"'"
-	db = MySQLdb.connect(host,user,password,database,port=int(MYSQL_PORT),charset='utf8')
+	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 	cursor = db.cursor()
 	cursor.execute(sql)
 	Cart_id=cursor.fetchone()
@@ -164,7 +164,7 @@ def cart_get(User_id):
 def cart_del(Goods_id,Count,User_id):
 	#修改购物车内商品数量，成功返回其余商品，失败返回1
 	sql="select Cart_id from Cart where User_id='"+User_id+"'"
-	db = MySQLdb.connect(host,user,password,database,port=int(MYSQL_PORT),charset='utf8')
+	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 	cursor = db.cursor()
 	cursor.execute(sql)
 	Cart_id=cursor.fetchone()
@@ -187,7 +187,7 @@ def cart_buy(User_id,Note):
 	for now in cartlist:
 		Money+=now.Money
 	sql="insert into Orderinfo values(uuid(),'"+User_id+"',now(),'"+str(Money)+"','"+Note+"',"+"false)"
-	db = MySQLdb.connect(host,user,password,database,port=int(MYSQL_PORT),charset='utf8')
+	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 	cursor = db.cursor()
 	cursor.execute(sql)
 
