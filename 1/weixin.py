@@ -48,7 +48,7 @@ def wechat_auth():
         arg = filter(lambda x:len(x) != 0,content.split(' '))
         if arg[0] == 'h':
             content = msg
-        elif event == 'subscribe':
+        elif arg[0].lower() == 'subscribe':
             content = 'welcome to shop'
         elif arg[0] == '1': 
             if User_alter(fromUser,arg[1],arg[2],g.db.cursor()):
@@ -59,7 +59,7 @@ def wechat_auth():
             arr = goods_search(arg[1],g.db.cursor())
             
         else:
-            content = arg[0]
+            content = event
 #*******************************output************************
         xml_rep = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
         response = make_response(xml_rep % (fromUser,toUser,str(int(time.time())), content))
