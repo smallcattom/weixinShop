@@ -66,27 +66,25 @@ def User_alter(User_id,operator,Parameter,cursor):
 # 	db.close()
 # 	return user_tmp
 
-# def goods_search(searchstr):
-# 	#通过mysql like匹配搜索searchstr，并返回一个包含所有结果的Goods类列表
-# 	sql="select * from Goods where Name like '%"+searchstr+"%' or Description like '%"+searchstr+"%'"
-# 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
-# 	cursor = db.cursor()
-# 	cursor.execute(sql)
-# 	result = cursor.fetchall()
-# 	goods=[]
-# 	for now in result:
-# 		tmp=Goods()
-# 		tmp.Goods_id=now[0]
-# 		tmp.Name=now[1]
-# 		tmp.Class_id=now[2]
-# 		tmp.Price=now[3]
-# 		tmp.Stock=now[4]
-# 		tmp.Place=now[5]
-# 		tmp.Image=now[6]
-# 		tmp.Description=now[7]
-# 		goods.append(tmp)
-# 	db.close()
-# 	return goods
+def goods_search(searchstr,cursor):
+	#通过mysql like匹配搜索searchstr，并返回一个包含所有结果的Goods类列表
+	sql="select * from Goods where Name like '%"+searchstr+"%' or Description like '%"+searchstr+"%'"
+	cursor.execute(sql)
+	result = cursor.fetchall()
+	goods=[]
+	for now in result:
+		tmp=Goods()
+		tmp.Goods_id=now[0]
+		tmp.Name=now[1]
+		tmp.Class_id=now[2]
+		tmp.Price=now[3]
+		tmp.Stock=now[4]
+		tmp.Place=now[5]
+		tmp.Image=now[6]
+		tmp.Description=now[7]
+		goods.append(tmp)
+	db.close()
+	return goods
 
 # def cart_creat(User_id):
 # 	#创建新的购物车(不存在时),返回Cart_id

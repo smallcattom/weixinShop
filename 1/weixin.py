@@ -48,11 +48,13 @@ def wechat_auth():
         if arg[0] == 'h':
             content = msg
         elif arg[0] == '1': 
-            # c = g.db.cursor()
             if User_alter(fromUser,arg[1],arg[2],g.db.cursor()):
                 content = FAIL
             else:
                 content = SUCCESS
+        elif arg[0] == '2':
+            arr = goods_search(arg[1],g.db.cursor())
+            
         else:
             content = arg[0]
 #*******************************output************************
