@@ -42,7 +42,6 @@ def wechat_auth():
         toUser = xml_rec.find('ToUserName').text
         fromUser = xml_rec.find('FromUserName').text
         content = xml_rec.find('Content').text
-        event = xml_rec.find('Event').text
 #***********************content is input***********************
 #            """  this is your code"""
         arg = filter(lambda x:len(x) != 0,content.split(' '))
