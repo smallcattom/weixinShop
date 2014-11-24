@@ -66,11 +66,9 @@ def wechat_auth():
             if User_alter(fromUser,arg[1],arg[2],g):
                 content = FAIL
             else:
-                g.db.commit()
                 content = SUCCESS
         elif arg[0] == '2':
-            arr = goods_search(arg[1],g)
-            
+            arr = goods_search(arg[1],g.db.cursor())     
         else:
             content = arg[0]
        
