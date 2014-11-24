@@ -2,23 +2,16 @@
 
 from classification import *
 
-# def User_add(Openid,Name,Addr,Tel):
-# 	#添加用户,成功返回用户信息，失败返回1
-# 	sql="insert into User values('"+Openid+"','"+Name+"',0,'"+Addr+"','"+Tel+"')"
-# 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
-# 	cursor = db.cursor()
-#	try:
-# 		cursor.execute(sql)
-# 		db.commit()
-# 	except IntegrityError,e:
-#		pass
-# 	user_tmp=User()
-# 	user_tmp.User_id=Openid
-# 	user_tmp.User_name=Name
-# 	user_tmp.Addr=Addr
-# 	user_tmp.Tel=Tel
-# 	db.close()
-# 	return user_tmp
+def User_add(Openid,Name,Addr,Tel,g):
+	#添加用户,成功返回用户信息，失败返回1
+	sql="insert into User values('"+Openid+"','"+Name+"',0,'"+Addr+"','"+Tel+"')"
+	cursor = g.db.cursor()
+	try:
+		cursor.execute(sql)
+		g.db.commit()
+	except IntegrityError,e:
+		return 1
+	return 0
 
 
 
