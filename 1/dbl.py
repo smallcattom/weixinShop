@@ -7,7 +7,9 @@ from classification import *
 # 	sql="insert into User values('"+Openid+"','"+Name+"',0,'"+Addr+"','"+Tel+"')"
 # 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 # 	cursor = db.cursor()
-# 	cursor.execute(sql)
+#	try:
+# 		cursor.execute(sql)
+# 		db.commit()
 # 	user_tmp=User()
 # 	user_tmp.User_id=Openid
 # 	user_tmp.User_name=Name
