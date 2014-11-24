@@ -17,7 +17,6 @@ from classification import *
 # 	user_tmp.User_name=Name
 # 	user_tmp.Addr=Addr
 # 	user_tmp.Tel=Tel
-# 	db.commit()
 # 	db.close()
 # 	return user_tmp
 
