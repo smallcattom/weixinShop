@@ -4,8 +4,8 @@ from classification import *
 
 def User_add(Openid,Name,Addr,Tel,cursor):
 	#添加用户,成功返回用户信息，失败返回1
-	sql="insert into User values('"+Openid+"','"+Name+"',0,'"+Addr+"','"+Tel+"')"
-	# cursor.execute(sql)
+    sql="insert into User values('"+Openid+"','"+Name+"',0,'"+ Addr+"','"+ str(Tel)+"')"
+	cursor.execute(sql)
 	return 0
 
 
