@@ -5,8 +5,8 @@ from classification import *
 def User_add(Openid,Name,Addr,Tel,cursor):
 	#添加用户,成功返回用户信息，失败返回1
     # sss="select * from User"
-    # cursor.execute(sql)
     sql="insert into User values('"+str(Openid)+"','"+str(Name)+"',0,'"+ str(Addr)+"','"+ str(Tel)+"')"
+    cursor.execute(sql)
     return 0
 def User_alter(User_id,operator,Parameter,cursor):
 	# 修改用户,成功返回用户信息，失败返回1
