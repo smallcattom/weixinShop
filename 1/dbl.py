@@ -76,6 +76,14 @@ def User_alter(User_id,operator,Parameter,cursor):
 # 	db.close()
 # 	return user_tmp
 
+# def User_exist(User_id):
+# 	#判断用户是否存在，存在返回0，不存在返回1
+# 	flog=User_info(User_id)
+# 	if(flog==1):
+# 		return 1
+# 	else:
+# 		return 0
+
 def goods_search(searchstr,cursor):
 	#通过mysql like匹配搜索searchstr，并返回一个包含所有结果的Goods类列表
 	sql="select * from Goods where Name like '%"+searchstr+"%' or Description like '%"+searchstr+"%'"
