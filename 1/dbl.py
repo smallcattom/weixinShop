@@ -9,8 +9,8 @@ from classification import *
 # 	cursor = db.cursor()
 # 	cursor.execute(sql)
 # 	user_tmp=User()
-# 	user_tmp.User_name=Name
 # 	user_tmp.User_id=Openid
+# 	user_tmp.User_name=Name
 # 	user_tmp.Addr=Addr
 # 	user_tmp.Tel=Tel
 # 	db.commit()
