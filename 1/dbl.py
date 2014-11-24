@@ -20,6 +20,18 @@ from classification import *
 # 	db.close()
 # 	return user_tmp
 
+# def User_search(Openid):
+# 	#判断用户是否存在，存在返回0，不存在返回1
+# 	sql="select User_id from  User where User_id='"+Openid+"'"
+# 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
+# 	cursor = db.cursor()
+# 	cursor.execute(sql)
+# 	flog=cursor.fetchone()
+# 	db.close()
+# 	if(type(flog)==type(None)):
+# 		return 1
+# 	else return 0
+
 def User_alter(User_id,operator,Parameter,cursor):
 	# 修改用户,成功返回用户信息，失败返回1
 	# 	0：修改地址
