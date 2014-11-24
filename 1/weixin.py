@@ -46,7 +46,7 @@ def wechat_auth():
         if msgtype == "event":
             msgcontent = xml_rec.find('Event').text
             if msgcontent == "subscribe":
-                msgcontent = '欢迎关注猫商城帐号\n'
+                msgcontent = '欢迎关注猫商城\n爱猫猫就是爱自己^_^'
                 User_add(fromUser,'xxx','xxx',100000,g)
             else:
                 msgcontent = 'error'
