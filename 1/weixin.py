@@ -57,8 +57,7 @@ def wechat_auth():
 #***********************content is input***********************
 #            """  this is your code"""
         arg = filter(lambda x:len(x) != 0,content.split(' '))
-        if evt == 'event':
-            content = 'event'
+       
         if arg[0] == 'h':
             content = msg
         elif arg[0] == '1': 
