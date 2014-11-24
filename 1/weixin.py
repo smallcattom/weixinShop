@@ -47,7 +47,7 @@ def wechat_auth():
             msgcontent = xml_rec.find('Event').text
             if msgcontent == "subscribe":
                 msgcontent = '欢迎关注猫商城\n爱猫猫就是爱自己^_^'
-                User_add(fromUser,'xxx','xxx',100000,g)
+                User_add(fromUser,'xxx','xxx',100000)
             else:
                 msgcontent = 'error'
             xml_rep = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
