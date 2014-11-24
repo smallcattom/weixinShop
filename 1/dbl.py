@@ -20,9 +20,9 @@ from classification import *
 # 	db.close()
 # 	return user_tmp
 
-# def User_search(Openid):
+# def User_search(User_id):
 # 	#判断用户是否存在，存在返回用户信息，不存在返回1
-# 	sql="select User_name,Addr,Tel from  User where User_id='"+Openid+"'"
+# 	sql="select User_name,Addr,Tel from  User where User_id='"+User_id+"'"
 # 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 # 	cursor = db.cursor()
 # 	cursor.execute(sql)
