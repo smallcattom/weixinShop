@@ -12,18 +12,18 @@ def User_add(Openid,Name,Addr,Tel):
 
 
 
-def User_alter(User_id,operator,Parameter,g):
+def User_alter(User_id,operator,Parameter,cursor):
 	# 修改用户,成功返回用户信息，失败返回1
 	# 	0：修改地址
 	# 	1：修改收货人
 	# 	2：修改电话
 	sql="select User_name,Addr,Tel from User where User_id='"+User_id+"'"
-    cursor = g.db.cursor()
+    # cursor = g.db.cursor()
 	cursor.execute(sql)
 	info=cursor.fetchone()
 	if(type(info)==type(None)): 		
 		return 1
-		
+
 	user_tmp=User()
 	user_tmp.User_name=info[0]
 	user_tmp.Addr=info[1]
