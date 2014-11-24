@@ -49,7 +49,8 @@ def wechat_auth():
                 msgcontent = '欢迎关注猫商城帐号\n'
             else:
                 msgcontent = 'error'
-
+            xml_rep = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
+      
             response = make_response(xml_rep % (fromUser,toUser,str(int(time.time())), msgcontent))
             response.content_type='application/xml'
             return response
