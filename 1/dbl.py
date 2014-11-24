@@ -22,15 +22,13 @@ from classification import *
 
 
 
-def User_alter(User_id,operator,Parameter,cursor):
+def User_alter(User_id,operator,Parameter,g):
 	# 修改用户,成功返回用户信息，失败返回1
 	# 	0：修改地址
 	# 	1：修改收货人
 	# 	2：修改电话
-	
 	sql="select User_name,Addr,Tel from User where User_id='"+User_id+"'"
-	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
-    cursor = db.cursor()
+    cursor = g.db.cursor()
 	cursor.execute(sql)
 	info=cursor.fetchone()
 	if(type(info)==type(None)):
@@ -51,10 +49,10 @@ def User_alter(User_id,operator,Parameter,cursor):
 		sql="update User set Tel='"+Parameter+"' where User_id='"+User_id+"'"
 		user_tmp.Tel=Parameter
 	else:
- 		
 		return 1
 
 	cursor.execute(sql)
+	g.db.commit()
 	return 0
 
 # def User_info(User_id):
