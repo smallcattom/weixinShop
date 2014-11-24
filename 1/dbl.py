@@ -2,12 +2,10 @@
 
 from classification import *
 
-def User_add(Openid,Name,Addr,Tel):
+def User_add(Openid,Name,Addr,Tel,cursor):
 	#添加用户,成功返回用户信息，失败返回1
-	# sql="insert into User values('"+Openid+"','"+Name+"',0,'"+Addr+"','"+Tel+"')"
-	# cursor = g.db.cursor()
-	# cursor.execute(sql)
-	# g.db.commit()
+	sql="insert into User values('"+Openid+"','"+Name+"',0,'"+Addr+"','"+Tel+"')"
+	cursor.execute(sql)
 	return 0
 
 
@@ -18,7 +16,6 @@ def User_alter(User_id,operator,Parameter,cursor):
 	# 	1：修改收货人
 	# 	2：修改电话
 	sql="select User_name,Addr,Tel from User where User_id='"+User_id+"'"
-    # cursor = g.db.cursor()
 	cursor.execute(sql)
 	info=cursor.fetchone()
 	if(type(info)==type(None)): 		
