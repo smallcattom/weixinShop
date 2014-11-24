@@ -20,22 +20,7 @@ from classification import *
 # 	db.close()
 # 	return user_tmp
 
-# def User_search(User_id):
-# 	#判断用户是否存在，存在返回用户信息，不存在返回1
-# 	sql="select User_name,Addr,Tel from  User where User_id='"+User_id+"'"
-# 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
-# 	cursor = db.cursor()
-# 	cursor.execute(sql)
-# 	info=cursor.fetchone()
-# 	db.close()
-# 	if(type(info)==type(None)):
-# 		return 1
-# 	else:
-#		user_tmp=User()
-#       user_tmp.User_name=info[0]
-#       user_tmp.Addr=info[1]
-#       user_tmp.Tel=info[2]
-#		return user_tmp
+
 
 def User_alter(User_id,operator,Parameter,cursor):
 	# 修改用户,成功返回用户信息，失败返回1
