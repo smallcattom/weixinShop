@@ -75,7 +75,7 @@ def User_alter(User_id,operator,Parameter,cursor):
 
 # def User_info(User_id):
 # 	#查询用户信息,成功返回用户信息，失败返回1
-# 	sql="select User_name,Addr,Tel  from User where User_id='"+User_id+"'"
+# 	sql="select User_name,Addr,Tel from User where User_id='"+User_id+"'"
 # 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 # 	cursor = db.cursor()
 # 	cursor.execute(sql)
@@ -86,9 +86,8 @@ def User_alter(User_id,operator,Parameter,cursor):
 # 	else:
 # 		user_tmp=User()
 # 		user_tmp.User_name=info[1]
-# 		user_tmp.count=info[2]
-# 		user_tmp.Addr=info[3]
-# 		user_tmp.Tel=info[4]
+# 		user_tmp.Addr=info[2]
+# 		user_tmp.Tel=info[3]
 # 	db.close()
 # 	return user_tmp
 
