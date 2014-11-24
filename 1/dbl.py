@@ -178,6 +178,7 @@ def goods_search(searchstr,cursor):
 # 	cursor.execute(sql)
 # 	Cart_id=cursor.fetchone()
 # 	if(type(Cart_id)==type(None)):
+# 		db.close()
 # 		return 1
 # 	sql="select Count from CartItem where Cart_id='"+Cart_id[0]+"' and Goods_id='"+Goods_id+"'"
 # 	cursor.execute(sql)
@@ -215,6 +216,3 @@ def goods_search(searchstr,cursor):
 # 	db.commit()
 # 	db.close()
 # 	return 0
-
-# if __name__ = '__main__':
-# 	cart_buy("1bcbbf3d-6e15-11e4-8d74-f46d0489f16d","zhang")
