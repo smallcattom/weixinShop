@@ -43,7 +43,7 @@ def User_alter(User_id,operator,Parameter,cursor):
 	# 	1：修改收货人
 	# 	2：修改电话
 	
-	sql="select * from User where User_id='"+User_id+"'"
+	sql="select User_name,Addr,Tel from User where User_id='"+User_id+"'"
 	
 	cursor.execute(sql)
 	info=cursor.fetchone()
