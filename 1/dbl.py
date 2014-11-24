@@ -88,7 +88,7 @@ def goods_search(searchstr,cursor):
 		tmp.Image=now[6]
 		tmp.Description=now[7]
 		goods.append(tmp)
-	db.close()
+	
 	return goods
 
 # def cart_creat(User_id):
