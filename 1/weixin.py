@@ -68,7 +68,7 @@ def wechat_auth():
             else:
                 content = SUCCESS
         elif arg[0] == '2':
-            arr = goods_search(arg[1],g.db.cursor())     
+            content = goods_search(arg[1],g.db.cursor())     
         else:
             content = arg[0]
        
