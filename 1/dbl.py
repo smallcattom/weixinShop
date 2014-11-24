@@ -13,27 +13,24 @@ def User_alter(User_id,operator,Parameter,g):
 	# 	0：修改地址
 	# 	1：修改收货人
 	# 	2：修改电话
-	sql="select User_name,Addr,Tel from User where User_id='"+User_id+"'"
+	# sql="select User_name,Addr,Tel from User where User_id='"+User_id+"'"
 	cursor = g.db.cursor()
-	cursor.execute(sql)
-	info=cursor.fetchone()
-	if(type(info)==type(None)): 		
-		return 1
-	return 0
-	user_tmp=User()
-	user_tmp.User_name=info[0]
-	user_tmp.Addr=info[1]
-	user_tmp.Tel=info[2]
+	# cursor.execute(sql)
+	# info = cursor.fetchone()
+	# if(type(info)==type(None)): 		
+	# 	return 1
+	# return 0
+	# user_tmp=User()
+	# user_tmp.User_name=info[0]
+	# user_tmp.Addr=info[1]
+	# user_tmp.Tel=info[2]
 
 	if(operator=="0"):
 		sql="update User set Addr='"+Parameter+"' where User_id='"+User_id+"'"
-		user_tmp.Addr=Parameter
 	elif (operator=="1"):
 		sql="update User set User_name='"+Parameter+"' where User_id='"+User_id+"'"
-		user_tmp.Name=Parameter
 	elif (operator=="2"):
 		sql="update User set Tel='"+Parameter+"' where User_id='"+User_id+"'"
-		user_tmp.Tel=Parameter
 	else:
 		return 1
 
