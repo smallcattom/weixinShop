@@ -29,7 +29,7 @@ def User_alter(User_id,operator,Parameter,g):
 		sql="update User set Addr='"+Parameter+"' where User_id='"+User_id+"'"
 		user_tmp.Addr=Parameter
 	elif (operator=="1"):
-		sql="update User set User_Name='"+Parameter+"' where User_id='"+User_id+"'"
+		sql="update User set User_name='"+Parameter+"' where User_id='"+User_id+"'"
 		user_tmp.Name=Parameter
 	elif (operator=="2"):
 		sql="update User set Tel='"+Parameter+"' where User_id='"+User_id+"'"
