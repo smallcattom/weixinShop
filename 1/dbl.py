@@ -10,6 +10,8 @@ from classification import *
 #	try:
 # 		cursor.execute(sql)
 # 		db.commit()
+# 	except IntegrityError,e:
+#		pass
 # 	user_tmp=User()
 # 	user_tmp.User_id=Openid
 # 	user_tmp.User_name=Name
