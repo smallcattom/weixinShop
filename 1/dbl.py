@@ -30,7 +30,8 @@ from classification import *
 # 	db.close()
 # 	if(type(flog)==type(None)):
 # 		return 1
-# 	else return 0
+# 	else:
+#		return 0
 
 def User_alter(User_id,operator,Parameter,cursor):
 	# 修改用户,成功返回用户信息，失败返回1
