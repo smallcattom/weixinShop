@@ -60,7 +60,7 @@ def goods_search(searchstr,cursor):
 	cursor.execute(sql)
 
 	result = cursor.fetchall()
-	return sql
+	return str(len(result[0]))
 	goods=[]
 	ret = ""
 	for now in result:
