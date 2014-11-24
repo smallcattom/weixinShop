@@ -34,7 +34,7 @@ def User_alter(User_id,operator,Parameter,cursor):
 	cursor.execute(sql)
 	info=cursor.fetchone()
 	if(type(info)==type(None)):
- 		db.close()
+ 		
 		return 1
 	user_tmp=User()
 	user_tmp.User_name=info[0]
@@ -51,11 +51,10 @@ def User_alter(User_id,operator,Parameter,cursor):
 		sql="update User set Tel='"+Parameter+"' where User_id='"+User_id+"'"
 		user_tmp.Tel=Parameter
 	else:
- 		db.close()
+ 		
 		return 1
 
 	cursor.execute(sql)
- 	db.close()	
 	return 0
 
 # def User_info(User_id):
