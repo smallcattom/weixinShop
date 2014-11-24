@@ -1,5 +1,5 @@
 # -*- coding:utf-8 -*-
-from dbl import *
+# from dbl import *
 import time
 from flask import Flask,g,request,make_response
 import hashlib
@@ -47,7 +47,7 @@ def wechat_auth():
             msgcontent = xml_rec.find('Event').text
             if msgcontent == "subscribe":
                 msgcontent = '欢迎关注猫商城\n爱猫猫就是爱自己^_^'
-                User_add(fromUser,'xxx','xxx',100000)
+                # User_add(fromUser,'xxx','xxx',100000)
             else:
                 msgcontent = 'error'
             xml_rep = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
@@ -63,10 +63,11 @@ def wechat_auth():
         if arg[0] == 'h':
             content = msg
         elif arg[0] == '1': 
-            if User_alter(fromUser,arg[1],arg[2],g):
-                content = FAIL
-            else:
-                content = SUCCESS
+            content = '1'
+            # if User_alter(fromUser,arg[1],arg[2],g):
+            #     content = FAIL
+            # else:
+            #     content = SUCCESS
         elif arg[0] == '2':
             arr = goods_search(arg[1],g)
             
