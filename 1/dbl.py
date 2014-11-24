@@ -42,7 +42,7 @@ def User_alter(User_id,operator,Parameter,g):
 		return 1
 
 	cursor.execute(sql)
-	g.db.commit()
+	# g.db.commit()
 	return 0
 
 # def User_info(User_id):
