@@ -2,14 +2,15 @@
 
 from classification import *
 
-# def User_add(Name,Addr,Tel):
+# def User_add(Openid,Name,Addr,Tel):
 # 	#添加用户,成功返回用户信息，失败返回1
-# 	sql="insert into User values(uuid(),"+Name+",0,"+Addr+","+Tel+")"
+# 	sql="insert into User values('"+Openid+"','"+Name+"',0,'"+Addr+"','"+Tel+"')"
 # 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 # 	cursor = db.cursor()
 # 	cursor.execute(sql)
 # 	user_tmp=User()
 # 	user_tmp.User_name=Name
+# 	user_tmp.User_id=Openid
 # 	user_tmp.Addr=Addr
 # 	user_tmp.Tel=Tel
 # 	db.commit()
