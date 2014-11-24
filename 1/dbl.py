@@ -58,8 +58,9 @@ def goods_search(searchstr,cursor):
 	sql = 'select * from Goods'
 
 	cursor.execute(sql)
-	return sql
+
 	result = cursor.fetchall()
+	return sql
 	goods=[]
 	ret = ""
 	for now in result:
