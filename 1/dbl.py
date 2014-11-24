@@ -155,6 +155,7 @@ def goods_search(searchstr,cursor):
 # 	cursor.execute(sql)
 # 	Cart_id=cursor.fetchone()
 # 	if(type(Cart_id)==type(None)):
+# 		db.close()
 # 		return 1
 # 	sql="select Name,Count,Money from CartItem natural join Goods where Cart_id='"+Cart_id[0]+"'"
 # 	cursor.execute(sql)
