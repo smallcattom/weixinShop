@@ -5,9 +5,9 @@ from classification import *
 def User_add(Openid,Name,Addr,Tel,g):
 	#添加用户,成功返回用户信息，失败返回1
 	sql="insert into User values('"+Openid+"','"+Name+"',0,'"+Addr+"','"+Tel+"')"
-	cursor = g.db.cursor()
-	cursor.execute(sql)
-	g.db.commit()
+	# cursor = g.db.cursor()
+	# cursor.execute(sql)
+	# g.db.commit()
 	return 0
 
 
