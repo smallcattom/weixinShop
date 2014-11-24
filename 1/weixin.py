@@ -47,6 +47,8 @@ def wechat_auth():
         arg = filter(lambda x:len(x) != 0,content.split(' '))
         if arg[0] == 'h':
             content = msg
+        elif arg[0] == 'hello2bizuser':
+            content = 'welcome to shop'
         elif arg[0] == '1': 
             if User_alter(fromUser,arg[1],arg[2],g.db.cursor()):
                 content = FAIL
