@@ -5,7 +5,7 @@ from classification import *
 def User_add(Openid,Name,Addr,Tel,cursor):
 	#添加用户,成功返回用户信息，失败返回1
     # sql="insert into User values('"+str(Openid)+"','"+str(Name)+"',0,'"+ str(Addr)+"','"+ str(Tel)+"')"
-    sql = "select * from User"
+    # sql = "select * from User"
 	# cursor.execute(sql)
 	return 0
 
