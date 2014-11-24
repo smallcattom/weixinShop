@@ -21,7 +21,7 @@ from classification import *
 # 	return user_tmp
 
 # def User_search(Openid):
-# 	#判断用户是否存在，存在返回0，不存在返回1
+# 	#判断用户是否存在，存在返回用户信息，不存在返回1
 # 	sql="select * from  User where User_id='"+Openid+"'"
 # 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 # 	cursor = db.cursor()
@@ -31,7 +31,11 @@ from classification import *
 # 	if(type(flog)==type(None)):
 # 		return 1
 # 	else:
-#		return 0
+#		user_tmp=User()
+#       user_tmp.User_name=info[0]
+#       user_tmp.Addr=info[1]
+#       user_tmp.Tel=info[2]
+#		return user_tmp
 
 def User_alter(User_id,operator,Parameter,cursor):
 	# 修改用户,成功返回用户信息，失败返回1
