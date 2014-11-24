@@ -44,16 +44,16 @@ def wechat_auth():
         fromUser = xml_rec.find('FromUserName').text
         content = xml_rec.find('Content').text
         
-        if msgtype == "event":
-            msgcontent = xml_rec.find('Event').text
-            if msgcontent == "subscribe":
-                msgcontent = '欢迎关注猫商城帐号\n'
-            else:
-                msgcontent = 'error'
+        # if msgtype == "event":
+        #     msgcontent = xml_rec.find('Event').text
+        #     if msgcontent == "subscribe":
+        #         msgcontent = '欢迎关注猫商城帐号\n'
+        #     else:
+        #         msgcontent = 'error'
 
-            response = make_response(xml_rep % (fromUser,toUser,str(int(time.time())), msgcontent))
-            response.content_type='application/xml'
-            return response
+        #     response = make_response(xml_rep % (fromUser,toUser,str(int(time.time())), msgcontent))
+        #     response.content_type='application/xml'
+        #     return response
 #***********************content is input***********************
 #            """  this is your code"""
         arg = filter(lambda x:len(x) != 0,content.split(' '))
