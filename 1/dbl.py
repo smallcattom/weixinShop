@@ -62,7 +62,11 @@ def goods_search(searchstr,cursor):
 	result = cursor.fetchall()
 	ret = ''
 	for now in result:
-		return str(reduce(lambda x,y:len(x) + len(y),now))
+		al = 0
+		for x in now:
+			if x != None:
+				al += len(x)
+		return str(al)
 
 		tmp = '货物id: ' + now[0] + ' 商品名: ' + now[1] + ' 类别id:' + now[2] + ' 价格:' + now[3] + ' 库存:' + now[4] + ' 产地:' + now[5] + ' 描述:' + now[7] + '\n'
 		# tmp=Goods()
