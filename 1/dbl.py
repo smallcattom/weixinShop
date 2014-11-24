@@ -63,7 +63,8 @@ def User_alter(User_id,operator,Parameter,cursor):
 	else:
 		return 1
 
-	cursor.execute(sql)	
+	cursor.execute(sql)
+ 	db.close()	
 	return 0
 
 # def User_info(User_id):
