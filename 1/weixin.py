@@ -42,7 +42,7 @@ def wechat_auth():
         msgtype = xml_rec.find('MsgType').text
         toUser = xml_rec.find('ToUserName').text
         fromUser = xml_rec.find('FromUserName').text
-'''对于第一次关注时的操作'''
+        '''对于第一次关注时的操作'''
         if msgtype == "event":
             msgcontent = xml_rec.find('Event').text
             if msgcontent == "subscribe":
