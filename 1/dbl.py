@@ -56,8 +56,9 @@ def goods_search(searchstr,cursor):
 	#通过mysql like匹配搜索searchstr，并返回一个包含所有结果的Goods类列表
 	# sql="select * from Goods where Name like '%"+searchstr+"%' or Description like '%"+searchstr+"%'"
 	sql = 'select * from Goods'
-	return sql
+
 	cursor.execute(sql)
+	return sql
 	result = cursor.fetchall()
 	goods=[]
 	ret = ""
