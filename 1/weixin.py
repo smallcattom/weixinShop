@@ -45,7 +45,7 @@ def wechat_auth():
         if evt == 'text':           
             content = xml_rec.find('Content').text
         elif evt == 'event':
-            event = xml_rec.find('Event').text
+            content = 'content'
 
 #***********************content is input***********************
 #            """  this is your code"""
