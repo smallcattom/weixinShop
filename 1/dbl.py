@@ -85,9 +85,9 @@ def User_alter(User_id,operator,Parameter,cursor):
 # 		return 1
 # 	else:
 # 		user_tmp=User()
-# 		user_tmp.User_name=info[1]
-# 		user_tmp.Addr=info[2]
-# 		user_tmp.Tel=info[3]
+# 		user_tmp.User_name=info[0]
+# 		user_tmp.Addr=info[1]
+# 		user_tmp.Tel=info[2]
 # 	db.close()
 # 	return user_tmp
 
