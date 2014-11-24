@@ -75,6 +75,7 @@ def User_alter(User_id,operator,Parameter,cursor):
 # 	cursor.execute(sql)
 # 	info=cursor.fetchone()
 # 	if(type(info)==type(None)):
+# 		db.close()
 # 		return 1
 # 	else:
 # 		user_tmp=User()
