@@ -26,9 +26,9 @@ from classification import *
 # 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
 # 	cursor = db.cursor()
 # 	cursor.execute(sql)
-# 	flog=cursor.fetchone()
+# 	info=cursor.fetchone()
 # 	db.close()
-# 	if(type(flog)==type(None)):
+# 	if(type(info)==type(None)):
 # 		return 1
 # 	else:
 #		user_tmp=User()
