@@ -23,7 +23,7 @@ def User_alter(User_id,operator,Parameter,cursor):
 	info=cursor.fetchone()
 	if(type(info)==type(None)): 		
 		return 1
-
+	return 0
 	user_tmp=User()
 	user_tmp.User_name=info[0]
 	user_tmp.Addr=info[1]
