@@ -23,8 +23,9 @@ class CartItem(object):
 
 class User(object):
 	#用户类型
-	def __init__(self,User_name=0,count=0,Addr=0,Tel=0):
+	def __init__(self,User_id=1,User_name=0,count=0,Addr=0,Tel=0):
 		self.User_name=User_name
+		self.User_id=User_id
 		self.count=count
 		self.Addr=Addr
 		self.Tel=Tel
