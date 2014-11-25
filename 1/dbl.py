@@ -62,7 +62,8 @@ def goods_search(searchstr,cursor):
 	
 	ret = ''
 	for now in result:
-		tmp = '货物id: ' + str(now[0]) + ' 商品名: ' + str(now[1]) + ' 类别id:' + str(now[2]) + ' 价格:' + str(now[3]) + ' 库存:' + str(now[4]) + ' 产地:' + str(now[5]) + ' 描述:' + str(now[7]) + '\n'
+		tmp = 'hello'
+		# tmp = '货物id: ' + str(now[0]) + ' 商品名: ' + str(now[1]) + ' 类别id:' + str(now[2]) + ' 价格:' + str(now[3]) + ' 库存:' + str(now[4]) + ' 产地:' + str(now[5]) + ' 描述:' + str(now[7]) + '\n'
 		# tmp=Goods()
 		# tmp.Goods_id=now[0]
 		# tmp.Name=now[1]
