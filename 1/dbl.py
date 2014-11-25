@@ -61,8 +61,7 @@ def goods_search(searchstr,cursor):
 	result = cursor.fetchall()
 	
 	ret = ''
-	for now in result:
-		tmp = '货物id: ' + now[0]
+	
 		# tmp = '货物id: ' + now[0] + ' 商品名: ' + now[1] + ' 类别id:' + now[2] + ' 价格:' + now[3] + ' 库存:' + now[4] + ' 产地:' + now[5] + ' 描述:' + now[7] + '\n'　　　　
 		# tmp=Goods()
 		# tmp.Goods_id=now[0]
@@ -74,8 +73,7 @@ def goods_search(searchstr,cursor):
 		# tmp.Image=now[6]
 		# tmp.Description=now[7]
 		# goods.append(tmp)	
-		return tmp
-		ret += tmp
+		
 
 	return ret
 
