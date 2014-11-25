@@ -58,33 +58,14 @@ def goods_search(searchstr,cursor):
 	sql = 'select * from Goods'
 
 	cursor.execute(sql)
-	# result = cursor.fetchall()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-	now = cursor.fetchone()
-
-	tmp = '货物id: ' + str(now[0]) + ' 商品名: ' + str(now[1]) + ' 类别id:' + str(now[2]) + ' 价格:' + str(now[3]) + ' 库存:' + str(now[4]) + ' 产地:' + now[5].encode('utf8') + ' 描述:' + now[7].encode('utf8') + '\n'
-	ret = tmp
-	# ret = ''
-	# for now in result:
-	# 	tmp = '货物id: ' + str(now[0]) + ' 商品名: ' + str(now[1]) + ' 类别id:' + str(now[2]) + ' 价格:' + str(now[3]) + ' 库存:' + str(now[4]) + ' 产地:' + now[5].encode('utf8') + ' 描述:' + now[7].encode('utf8') + '\n'
-	# 	return tmp
-	# 	ret += tmp
+	result = cursor.fetchall()
+	# tmp = '货物id: ' + str(now[0]) + ' 商品名: ' + str(now[1]) + ' 类别id:' + str(now[2]) + ' 价格:' + str(now[3]) + ' 库存:' + str(now[4]) + ' 产地:' + now[5].encode('utf8') + ' 描述:' + now[7].encode('utf8') + '\n'
+	# ret = tmp
+	ret = ''
+	for now in result:
+		tmp = '货物id: ' + str(now[0]) + ' 商品名: ' + str(now[1]) + ' 类别id:' + str(now[2]) + ' 价格:' + str(now[3]) + ' 库存:' + str(now[4]) + ' 产地:' + now[5].encode('utf8') + ' 描述:' + now[7].encode('utf8') + '\n'
+		
+		ret += tmp
 
 	return ret
 
