@@ -66,7 +66,7 @@ def goods_search(searchstr,cursor):
 	for now in result:
 		if a > 16:
 			break
-		tmp = '货物id: ' + str(now[0]) + ' 商品名: ' + str(now[1]) + ' 类别id:' + str(now[2]) + ' 价格:' + str(now[3]) + ' 库存:' + str(now[4]) + ' 产地:' + now[5].encode('utf8') + ' 描述:' + now[7].encode('utf8') + '\n'
+		tmp = '货物id: ' + now[0].encode('utf8') + ' 商品名: ' + str(now[1]) + ' 类别id:' + str(now[2]) + ' 价格:' + str(now[3]) + ' 库存:' + str(now[4]) + ' 产地:' + now[5].encode('utf8') + ' 描述:' + now[7].encode('utf8') + '\n'
 		a += 1
 		ret += tmp
 
