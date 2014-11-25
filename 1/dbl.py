@@ -63,7 +63,7 @@ def goods_search(searchstr,cursor):
 		try:
 			tmp = '货物id: ' + now[0] + ' 商品名: ' + now[1] + ' 类别id:' + now[2] + ' 价格:' + now[3] + ' 库存:' + now[4] + ' 产地:' + now[5] + ' 描述:' + now[7] + '\n'　　　　
 　　　　except　Exception,data:
-	　　　　return　Exception+":"+data
+	　　　　return　'error'
 		# tmp=Goods()
 		# tmp.Goods_id=now[0]
 		# tmp.Name=now[1]
