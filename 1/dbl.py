@@ -59,7 +59,7 @@ def goods_search(searchstr,cursor):
 
 	cursor.execute(sql)
 	res = cursor.fetchall()
-	return res[0][0]
+	return '货物id: ' + res[0][0] + ' 商品名: ' + res[0][1] + ' 类别id:' + res[0][2]
 	ret = ''
 	for now in res:
 		tmp = '货物id: ' + now[0] + ' 商品名: ' + now[1] + ' 类别id:' + now[2] + ' 价格:' + now[3] + ' 库存:' + now[4] + ' 产地:' + now[5] + ' 描述:' + now[7] + '\n'
