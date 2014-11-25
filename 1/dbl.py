@@ -62,9 +62,12 @@ def goods_search(searchstr,cursor):
 	# tmp = '货物id: ' + str(now[0]) + ' 商品名: ' + str(now[1]) + ' 类别id:' + str(now[2]) + ' 价格:' + str(now[3]) + ' 库存:' + str(now[4]) + ' 产地:' + now[5].encode('utf8') + ' 描述:' + now[7].encode('utf8') + '\n'
 	# ret = tmp
 	ret = ''
+	a = 1
 	for now in result:
+		if a > 2:
+			break
 		tmp = '货物id: ' + str(now[0]) + ' 商品名: ' + str(now[1]) + ' 类别id:' + str(now[2]) + ' 价格:' + str(now[3]) + ' 库存:' + str(now[4]) + ' 产地:' + now[5].encode('utf8') + ' 描述:' + now[7].encode('utf8') + '\n'
-		return tmp
+		a += 1
 		ret += tmp
 
 	return ret
