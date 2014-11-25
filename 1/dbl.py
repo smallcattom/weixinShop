@@ -59,7 +59,7 @@ def goods_search(searchstr,cursor):
 
 	cursor.execute(sql)
 	result = cursor.fetchall()
-	return result[0][0]
+	
 	ret = ''
 	for now in result:
 		tmp = '货物id: ' + now[0]
