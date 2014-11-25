@@ -74,7 +74,7 @@ def goods_search(searchstr,cursor):
 		# tmp.Image=now[6]
 		# tmp.Description=now[7]
 		# goods.append(tmp)	
-		# return tmp
+		return tmp
 		ret += tmp
 
 	return ret
