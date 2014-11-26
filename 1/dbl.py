@@ -34,7 +34,7 @@ def User_info(User_id,cursor):
 	if(type(info)==type(None)):
 		return 1
 	else:
-		return '用户名：' + str(info[0]) #+ '\n用户购物次数：' + str(info[1]) + '\n用户地址：' + info[2].encode('utf8') + '\n用户电话：' + info[3].encode('utf8') + '\n'
+		return '用户名：' + info[0].encode('utf8') #+ '\n用户购物次数：' + str(info[1]) + '\n用户地址：' + info[2].encode('utf8') + '\n用户电话：' + info[3].encode('utf8') + '\n'
 	
 
 # def User_exist(User_id):
