@@ -85,6 +85,8 @@ def cart_add(Goods_id,Count,User_id,g):
 		if(type(Price)!=type(None)):
 			sql="insert into CartItem values(uuid(),'"+Cart_id+"','"+Count+"','"+Goods_id+"','"+str(int(Price[0])*int(Count))+"')"
 			cursor.execute(sql)
+			g.db.commit()
+			return 1
 	else:
 		sql="update CartItem set Count='"+str(int(count[0])+int(Count))+"' where Cart_id='"+Cart_id+"' and Goods_id='"+Goods_id+"'"
 		cursor.execute(sql)
