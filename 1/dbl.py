@@ -61,9 +61,10 @@ def cart_creat(User_id,g):
 	#创建新的购物车(不存在时),返回Cart_id
 	cursor = g.db.cursor()
 	try:
+		return 'in'
 		sql="insert into Cart values(uuid(),'"+User_id+"',10,now())"
 		cursor.execute(sql)
-		return 'in'
+		
 		g.db.commit()
 	except IntegrityError,e:
 		sql="select Cart_id from Cart where User_id='"+User_id+"'"
