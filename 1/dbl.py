@@ -60,7 +60,6 @@ def goods_search(searchstr,cursor):
 def cart_creat(User_id,g):
 	#创建新的购物车(不存在时),返回Cart_id
 	cursor = g.db.cursor()
-	return 'first'
 	try:
 		sql="insert into Cart values(uuid(),'"+User_id+"',10,now())"
 		cursor.execute(sql)
