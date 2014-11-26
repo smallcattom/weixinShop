@@ -64,7 +64,7 @@ def goods_search(searchstr,cursor):
 	ret = ''
 	a = 1
 	for now in result:
-		tmp = u'货物id: ' + now[1].encode('utf8') + u' 商品名: ' + str(now[1]) + u' 类别id:' + str(now[2]) + u' 价格:' + str(now[3]) + u' 库存:' + str(now[4]) + u' 产地:' + now[5].encode('utf8') + ' 描述:' + now[7].encode('utf8') + '\n'
+		tmp = u'货物id: ' + str(now[1]) + u' 商品名: ' + str(now[1]) + u' 类别id:' + str(now[2]) + u' 价格:' + str(now[3]) + u' 库存:' + str(now[4]) + u' 产地:' + now[5].encode('utf8') + ' 描述:' + now[7].encode('utf8') + '\n'
 		a += 1
 		ret += tmp
 
