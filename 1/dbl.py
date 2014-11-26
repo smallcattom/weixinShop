@@ -26,23 +26,16 @@ def User_alter(User_id,operator,Parameter,g):
 	g.db.commit()
 	return 0
 
-# def User_info(User_id):
-# 	#查询用户信息,成功返回用户信息，用户不存在返回1
-# 	sql="select User_name,Addr,Tel from User where User_id='"+User_id+"'"
-# 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
-# 	cursor = db.cursor()
-# 	cursor.execute(sql)
-# 	info=cursor.fetchone()
-# 	if(type(info)==type(None)):
-# 		db.close()
-# 		return 1
-# 	else:
-# 		user_tmp=User()
-# 		user_tmp.User_name=info[0]
-# 		user_tmp.Addr=info[1]
-# 		user_tmp.Tel=info[2]
-# 	db.close()
-# 	return user_tmp
+def User_info(User_id,cursor):
+	#查询用户信息,成功返回用户信息，用户不存在返回1
+	sql="select User_name,count,Addr,Tel from User where User_id='"+User_id+"'"
+	cursor.execute(sql)
+	info = cursor.fetchone()
+	if(type(info)==type(None)):
+		return 1
+	else:
+		return '用户名：' + str(info[0]) + '\n用户购物次数：' + str(info[1]) + '\n用户地址：' + info[2].encode('utf8') + '\n用户电话：' + info[3].encode('utf8') + '\n'
+	
 
 # def User_exist(User_id):
 # 	#判断用户是否存在，存在返回0，不存在返回1

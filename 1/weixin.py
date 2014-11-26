@@ -20,7 +20,7 @@ def teardown_request(exception):
 SUCCESS = 'Success'
 FAIL = 'Fail'
 # h口令 对应的输出
-msg = '命令格式:\n用户个人信息修改:\n1 选项id  新内容     注：0：地址 1：名字 2：电话\n商品查找:\n2 商品名\n下单:\n3\n商品库存查询:\n4 商品名\n删除购物车商品:\n5 商品名 数量\n查看购物车:\n6\n添加购物车:\n7  商品名 数量\n留言:\n 8 留言'
+msg = '命令格式:\n用户个人信息修改:\n1 选项id  新内容     注：0：地址 1：名字 2：电话\n商品查找:\n2 商品名\n下单:\n3\n用户信息查询:\n4\n删除购物车商品:\n5 商品名 数量\n查看购物车:\n6\n添加购物车:\n7  商品名 数量\n留言:\n 8 留言'
 
 @app.route('/',methods=['GET','POST'])
 def wechat_auth():
@@ -68,7 +68,13 @@ def wechat_auth():
             else:
                 content = SUCCESS
         elif arg[0] == '2':
-            content = goods_search(arg[1],g.db.cursor())     
+            content = goods_search(arg[1],g.db.cursor())
+        elif arg[1] == '3':
+            content = '下单成功'
+        elif arg[1] == '4':
+            content = User_info(fromUser,g.db.cursor());
+            if content == 1:
+                content = 'error'
         else:
             content = arg[0]
        
