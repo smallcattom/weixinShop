@@ -65,7 +65,10 @@ def cart_creat(User_id,g):
 		cursor.execute(sql)
 		g.db.commit()
 	except IntegrityError,e:
-		pass
+		sql="select Cart_id from Cart where User_id='"+User_id+"'"
+		cursor.execute(sql)
+		Cart_id = cursor.fetchone()[0]
+		return Cart_id
 	sql="select Cart_id from Cart where User_id='"+User_id+"'"
 	cursor.execute(sql)
 	Cart_id = cursor.fetchone()[0]
