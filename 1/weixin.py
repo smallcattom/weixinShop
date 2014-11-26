@@ -69,9 +69,9 @@ def wechat_auth():
                 content = SUCCESS
         elif arg[0] == '2':
             content = goods_search(arg[1],g.db.cursor())
-        elif arg[1] == '3':
+        elif arg[0] == '3':
             content = '下单成功'
-        elif arg[1] == '4':
+        elif arg[0] == '4':
             content = User_info(fromUser,g.db.cursor());
             if content == 1:
                 content = 'error'
