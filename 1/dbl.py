@@ -74,6 +74,7 @@ def cart_creat(User_id,g):
 def cart_add(Goods_id,Count,User_id,g):
 	#添加新的商品到购物车，成功返回0，失败返回1
 	Cart_id=cart_creat(User_id,g)
+	return 'hello'
 	sql="select Count from CartItem where Cart_id='"+Cart_id+"' and Goods_id='"+Goods_id+"'"
 	cursor = g.db.cursor()
 	cursor.execute(sql)
@@ -85,8 +86,6 @@ def cart_add(Goods_id,Count,User_id,g):
 		if(type(Price)!=type(None)):
 			sql="insert into CartItem values(uuid(),'"+Cart_id+"','"+Count+"','"+Goods_id+"','"+str(int(Price[0])*int(Count))+"')"
 			cursor.execute(sql)
-			# g.db.commit()
-			# return 1
 	else:
 		sql="update CartItem set Count='"+str(int(count[0])+int(Count))+"' where Cart_id='"+Cart_id+"' and Goods_id='"+Goods_id+"'"
 		cursor.execute(sql)
