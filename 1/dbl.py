@@ -54,18 +54,16 @@ def User_alter(User_id,operator,Parameter,g):
 
 def goods_search(searchstr,cursor):
 	#通过mysql like匹配搜索searchstr，并返回一个包含所有结果的Goods类列表
-	# sql="select * from Goods where Name like '%"+searchstr+"%' or Description like '%"+searchstr+"%'"
-	sql = 'select * from Goods'
+	sql="select * from Goods where Name like '%"+searchstr+"%' or Description like '%"+searchstr+"%'"
+	# sql = 'select * from Goods'
 
 	cursor.execute(sql)
 	result = cursor.fetchall()
 	ret = ''
 	for now in result:
 		tmp = '货物id: ' + str(now[0])+' 商品名: ' + str(now[1]) + ' 类别id:' + str(now[2]) + ' 价格:' + str(now[3]) + ' 库存:' + str(now[4]) + ' 产地:' + now[5].encode('utf8') + ' 描述:' + now[7].encode('utf8') + '\n'
-		tmp = "1"*100
 		return tmp
 		ret += tmp
-
 	return ret
 
 # def cart_creat(User_id):
