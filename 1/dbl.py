@@ -48,8 +48,6 @@ def User_info(User_id,cursor):
 def goods_search(searchstr,cursor):
 	#通过mysql like匹配搜索searchstr，并返回一个包含所有结果的Goods类列表
 	sql="select * from Goods where Name like '%"+searchstr+"%' or Description like '%"+searchstr+"%'"
-	# sql = 'select * from Goods'
-
 	cursor.execute(sql)
 	result = cursor.fetchall()
 	ret = '没有搜索到该商品哦>_<'
@@ -59,46 +57,39 @@ def goods_search(searchstr,cursor):
 		ret += tmp
 	return ret
 
-# def cart_creat(User_id):
-# 	#创建新的购物车(不存在时),返回Cart_id
-# 	try:
-# 		sql="insert into Cart values(uuid(),'"+User_id+"',10,now())"
-# 		db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
-# 		cursor = db.cursor()
-# 		cursor.execute(sql)
-# 		db.commit()
-# 	except IntegrityError,e:
-# 		pass
-# 	sql="select Cart_id from Cart where User_id='"+User_id+"'"
-# 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
-# 	cursor = db.cursor()
-# 	cursor.execute(sql)
-# 	Cart_id = cursor.fetchone()[0]
-# 	db.commit()
-# 	db.close()
-# 	return Cart_id
+def cart_creat(User_id,g):
+	#创建新的购物车(不存在时),返回Cart_id
+	cursor = g.db.cursor()
+	try:
+		sql="insert into Cart values(uuid(),'"+User_id+"',10,now())"
+		cursor.execute(sql)
+		g.db.commit()
+	except IntegrityError,e:
+		pass
+	sql="select Cart_id from Cart where User_id='"+User_id+"'"
+	cursor.execute(sql)
+	Cart_id = cursor.fetchone()[0]
+	return Cart_id
 	
-# def cart_add(Goods_id,Count,User_id):
-# 	#添加新的商品到购物车，成功返回0，失败返回1
-# 	Cart_id=cart_creat(User_id)
-# 	sql="select Count from CartItem where Cart_id='"+Cart_id+"' and Goods_id='"+Goods_id+"'"
-# 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
-# 	cursor = db.cursor()
-# 	cursor.execute(sql)
-# 	count=cursor.fetchone()
-# 	if(type(count)==type(None)):
-# 		sql="select Price from Goods where Goods_id='"+Goods_id+"'"
-# 		cursor.execute(sql)
-# 		Price=cursor.fetchone()
-# 		if(type(Price)!=type(None)):
-# 			sql="insert into CartItem values(uuid(),'"+Cart_id+"','"+Count+"','"+Goods_id+"','"+str(int(Price[0])*int(Count))+"')"
-# 			cursor.execute(sql)
-# 	else:
-# 		sql="update CartItem set Count='"+str(int(count[0])+int(Count))+"' where Cart_id='"+Cart_id+"' and Goods_id='"+Goods_id+"'"
-# 		cursor.execute(sql)
-# 	db.commit()
-# 	db.close()
-# 	return 0
+def cart_add(Goods_id,Count,User_id,g):
+	#添加新的商品到购物车，成功返回0，失败返回1
+	Cart_id=cart_creat(User_id,g)
+	sql="select Count from CartItem where Cart_id='"+Cart_id+"' and Goods_id='"+Goods_id+"'"
+	cursor = g.db.cursor()
+	cursor.execute(sql)
+	count=cursor.fetchone()
+	if(type(count)==type(None)):
+		sql="select Price from Goods where Goods_id='"+Goods_id+"'"
+		cursor.execute(sql)
+		Price=cursor.fetchone()
+		if(type(Price)!=type(None)):
+			sql="insert into CartItem values(uuid(),'"+Cart_id+"','"+Count+"','"+Goods_id+"','"+str(int(Price[0])*int(Count))+"')"
+			cursor.execute(sql)
+	else:
+		sql="update CartItem set Count='"+str(int(count[0])+int(Count))+"' where Cart_id='"+Cart_id+"' and Goods_id='"+Goods_id+"'"
+		cursor.execute(sql)
+	g.db.commit()
+	return 0
 
 # def cart_get(User_id):
 # 	#获取购物车内商品，成功返回购物车，失败返回1
