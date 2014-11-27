@@ -82,7 +82,8 @@ def cart_add(Goods_id,Count,User_id,g):
 	cursor = g.db.cursor()
 	cursor.execute(sql)
 	count=cursor.fetchone()
-	if(type(count)==type(None)):
+	if type(count)==type(None):
+		return 'None'
 		sql="select Price from Goods where Goods_id='"+Goods_id+"'"
 		cursor.execute(sql)
 		Price=cursor.fetchone()
