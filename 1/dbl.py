@@ -62,14 +62,14 @@ def cart_creat(User_id,g):
 	cursor = g.db.cursor()
 	try:
 		sql="insert into Cart values(uuid(),'"+User_id+"',10,now())"
-		return 'in'
 		cursor.execute(sql)
-		
+		# return 'in'
 		g.db.commit()
-	except IntegrityError,e:
+	except:
 		sql="select Cart_id from Cart where User_id='"+User_id+"'"
 		cursor.execute(sql)
 		Cart_id = cursor.fetchone()[0]
+		return 'out1'
 		return Cart_id
 	sql="select Cart_id from Cart where User_id='"+User_id+"'"
 	cursor.execute(sql)
