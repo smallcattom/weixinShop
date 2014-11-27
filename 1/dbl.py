@@ -81,14 +81,14 @@ def cart_add(Goods_id,Count,User_id,g):
 	sql="select Count from CartItem where Cart_id='"+Cart_id+"' and Goods_id='"+Goods_id+"'"
 	cursor = g.db.cursor()
 	cursor.execute(sql)
-	count=cursor.fetchone()
-	if type(count)==type(None):
+	fet=cursor.fetchone()
+	if type(fet) == type(None):
 		sql="select Price from Goods where Goods_id='"+Goods_id+"'"
 		cursor.execute(sql)
 		Price=cursor.fetchone()
 		if type(Price) != type(None):
 			# sql="insert into CartItem values(uuid(),'"+Cart_id+"',"+Count+","+Goods_id+","+Price[0]+")"
-			sql="insert into CartItem values(uuid(),'"+Cart_id+"',"
+			sql="insert into CartItem values(uuid(),'"+Cart_id+"',"+ str(Count)+","+Goods_id+","+Price[0]+")"
 			return sql
 			# sql = "select * from Cart"
 			cursor.execute(sql)
