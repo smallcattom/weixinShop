@@ -86,9 +86,9 @@ def cart_add(Goods_id,Count,User_id,g):
 		sql="select Price from Goods where Goods_id='"+Goods_id+"'"
 		cursor.execute(sql)
 		Price=cursor.fetchone()
-		return Price[0]
-		if(type(Price)!=type(None)):
+		if type(Price) != type(None):
 			sql="insert into CartItem values(uuid(),'"+Cart_id+"',"+Count+","+Goods_id+","+Price[0]+")"
+			return sql
 			# sql = "select * from Cart"
 			cursor.execute(sql)
 	else:
