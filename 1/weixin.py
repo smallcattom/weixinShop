@@ -76,11 +76,11 @@ def wechat_auth():
             if content == 1:
                 content = 'error'
         elif arg[0] == '7':
-            # if cart_add(arg[1],int(arg[2]),fromUser,g):
-            #     content = '添加购物车失败'
-            # else:
-            #     content = '添加购物车成功'
-            content = cart_add(arg[1],int(arg[2]),fromUser,g)
+            if cart_add(arg[1],int(arg[2]),fromUser,g):
+                content = '添加购物车失败'
+            else:
+                content = '添加购物车成功'
+            # content = cart_add(arg[1],int(arg[2]),fromUser,g)
         else:
             content = arg[0]
        
