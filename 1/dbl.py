@@ -73,12 +73,11 @@ def cart_creat(User_id,g):
 	sql="select Cart_id from Cart where User_id='"+User_id+"'"
 	cursor.execute(sql)
 	Cart_id = cursor.fetchone()[0]
-	return 'out'
 	return Cart_id
 	
 def cart_add(Goods_id,Count,User_id,g):
 	#添加新的商品到购物车，成功返回0，失败返回1
-	return cart_creat(User_id,g)
+	Cart_id=cart_creat(User_id,g)
 	sql="select Count from CartItem where Cart_id='"+Cart_id+"' and Goods_id='"+Goods_id+"'"
 	cursor = g.db.cursor()
 	cursor.execute(sql)
