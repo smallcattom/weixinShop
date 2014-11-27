@@ -69,7 +69,6 @@ def cart_creat(User_id,g):
 		sql="select Cart_id from Cart where User_id='"+User_id+"'"
 		cursor.execute(sql)
 		Cart_id = cursor.fetchone()[0]
-		return 'out1'
 		return Cart_id
 	sql="select Cart_id from Cart where User_id='"+User_id+"'"
 	cursor.execute(sql)
