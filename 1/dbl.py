@@ -150,9 +150,8 @@ def cart_buy(User_id,Note,g):
 	result=cursor.fetchall()
 	for now in result:
 		sql="insert into CartItemRecord values(uuid(),'"+Cart_id+"',"+str(now[0])+",'"+str(now[1])+"',"+str(now[2])+",'"+ now[3] +"','"+now[4] +"','"+now[5] +"')"
-		return sql
 		cursor.execute(sql)
-
+		return sql
 	sql = "delete from CartItem where Cart_id = '" + cart_id + "'"
 	cursor.execute(sql)
 	sql = "delete from Cart where User_id = '" + User_id + "'"
