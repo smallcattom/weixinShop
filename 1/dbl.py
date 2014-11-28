@@ -148,5 +148,10 @@ def cart_buy(User_id,Note,g):
 	for now in result:
 		sql="insert into CartItemRecord values(uuid(),'"+Cart_id+"',"+str(now[0])+",'"+now[1]+"',"+str(now[2])+",'"+now[3]+"','"+now[4]+"','"+now[5]+"')"
 		cursor.execute(sql)
+
+	sql = "delete from CartItem where Cart_id = '" + cart_id + "'"
+	cursor.execute(sql)
+	sql = "delete from Cart where User_id = '" + User_id + "'"
+	cursor.execute(sql)
 	g.db.commit()
 	return 0
