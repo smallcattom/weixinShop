@@ -107,8 +107,8 @@ def cart_get(User_id,cursor):
 		return 1
 	sql="select Name,Count,Money from CartItem natural join Goods where Cart_id='"+Cart_id[0]+"'"
 	cursor.execute(sql)
-	return 'herer'
 	result=cursor.fetchall()
+	return result[0][0]
 	ret = ''
 	for x in result:
 		ret += x[0] + ' ' + str(x[1]) + ' ' + '价格：' + str(x[2]) + '\n'
