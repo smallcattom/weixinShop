@@ -143,7 +143,6 @@ def cart_buy(User_id,Note,g):
 		cursor.execute(sql)
 	except:
 		return 'error'
-	return 'here'
 	Cart_id=cart_creat(User_id,g)
 	sql="select Count,Name,Money,Place,Image,Description from Goods natural join(select Count,Goods_id,Money from CartItem where Cart_id='"+Cart_id+"') as A "
 	cursor.execute(sql)
