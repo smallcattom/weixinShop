@@ -113,7 +113,7 @@ def wechat_auth():
             if len(arg) == 1:
                 content = '格式错误\n留言格式为：8 留言'
             else:
-                content = '‘' + arg[1] + '’\n 留言成功'
+                content = '‘' + arg[1].encode('utf8') + '’\n 留言成功'
         else:
             content = '没有该命令，请输入命令h查找'
        
