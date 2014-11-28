@@ -139,7 +139,6 @@ def cart_buy(User_id,Note,g):
 
 	try:
 		sql="insert into CartRecord select * from Cart where User_id='"+User_id+"'"
-		# return sql
 		cursor.execute(sql)
 	except:
 		return 'error'
