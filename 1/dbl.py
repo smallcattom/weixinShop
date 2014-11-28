@@ -98,28 +98,20 @@ def cart_add(Goods_id,Count,User_id,g):
 	g.db.commit()
 	return 0
 
-# def cart_get(User_id):
-# 	#获取购物车内商品，成功返回购物车，失败返回1
-# 	sql="select Cart_id from Cart where User_id='"+User_id+"'"
-# 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
-# 	cursor = db.cursor()
-# 	cursor.execute(sql)
-# 	Cart_id=cursor.fetchone()
-# 	if(type(Cart_id)==type(None)):
-# 		db.close()
-# 		return 1
-# 	sql="select Name,Count,Money from CartItem natural join Goods where Cart_id='"+Cart_id[0]+"'"
-# 	cursor.execute(sql)
-# 	result=cursor.fetchall()
-# 	cartlist=[]
-# 	for now in result:
-# 		tmp=CartItem()
-# 		tmp.Goods_name=now[0]
-# 		tmp.Count=now[1]
-# 		tmp.Money=now[2]
-# 		cartlist.append(tmp)
-# 	db.close()
-# 	return cartlist
+def cart_get(User_id,cursor):
+	#获取购物车内商品，成功返回购物车，失败返回1
+	sql="select Cart_id from Cart where User_id='"+User_id+"'"
+	cursor.execute(sql)
+	Cart_id=cursor.fetchone()
+	if(type(Cart_id)==type(None)):
+		return 1
+	sql="select Name,Count,Money from CartItem natural join Goods where Cart_id='"+Cart_id[0]+"'"
+	cursor.execute(sql)
+	result=cursor.fetchall()
+	ret = ''
+	for x in result:
+		ret += x[0] + ' ' + str(x[1]) + ' ' + '价格：' + str(x[2]) + '\n'
+	return ret
 
 # def cart_del(Goods_id,Count,User_id):
 # 	#修改购物车内商品数量，成功返回其余商品，失败返回1
