@@ -68,7 +68,10 @@ def wechat_auth():
             else:
                 content = SUCCESS
         elif arg[0] == '2':
-            content = goods_search(arg[1],g.db.cursor())
+            if len(arg) > 2:
+                content = '格式错误\n商品查找格式为：2 商品名'
+            else:
+                content = goods_search(arg[1],g.db.cursor())
         elif arg[0] == '3':
             content = cart_buy(fromUser,'hello',g)
             if content == 1:
@@ -87,7 +90,7 @@ def wechat_auth():
         elif arg[0] == '6':
             content = cart_get(fromUser,g.db.cursor())
             if content == 1:
-                content = 'error'
+                content = '购物车为空'
         elif arg[0] == '5':
             if cart_del(arg[1],arg[2],fromUser,g):
                 content = '删除失败'
