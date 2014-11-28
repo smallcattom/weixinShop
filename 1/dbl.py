@@ -105,8 +105,8 @@ def cart_get(User_id,cursor):
 	Cart_id=cursor.fetchone()
 	if type(Cart_id) == type(None):
 		return 1
-	return 'herer'
 	sql="select Name,Count,Money from CartItem natural join Goods where Cart_id='"+Cart_id[0]+"'"
+	return 'herer'
 	cursor.execute(sql)
 	result=cursor.fetchall()
 	ret = ''
