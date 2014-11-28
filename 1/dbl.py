@@ -149,7 +149,7 @@ def cart_buy(User_id,Note,g):
 
 	result=cursor.fetchall()
 	for now in result:
-		sql="insert into CartItemRecord values(uuid(),'"+Cart_id+"',"+str(now[0])#+",'"+str(now[1])+"',"+str(now[2])+",'"+now[3].encode('utf8') +"','"+now[4].encode('utf8') +"','"+now[5].encode('utf8') +"')"
+		sql="insert into CartItemRecord values(uuid(),'"+Cart_id+"',"+str(now[0])+",'"+str(now[1])#+"',"+str(now[2])+",'"+now[3].encode('utf8') +"','"+now[4].encode('utf8') +"','"+now[5].encode('utf8') +"')"
 		return sql
 		cursor.execute(sql)
 
