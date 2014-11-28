@@ -1,5 +1,4 @@
 # -*- coding:utf8 -*- 
-
 from classification import *
 
 def User_add(Openid,Name,Addr,Tel,cursor):
@@ -25,7 +24,6 @@ def User_alter(User_id,operator,Parameter,g):
 	cursor.execute(sql)
 	g.db.commit()
 	return 0
-
 def User_info(User_id,cursor):
 	#查询用户信息,成功返回用户信息，用户不存在返回1
 	sql="select User_name,count,Addr,Tel from User where User_id='"+User_id+"'"
@@ -35,16 +33,6 @@ def User_info(User_id,cursor):
 		return 1
 	else:
 		return '用户名：' + info[0].encode('utf8') + '\n用户购物次数：' + str(info[1]) + '\n用户地址：' + info[2].encode('utf8') + '\n用户电话：' + info[3].encode('utf8') + '\n'
-	
-
-# def User_exist(User_id):
-# 	#判断用户是否存在，存在返回0，不存在返回1
-# 	flog=User_info(User_id)
-# 	if(flog==1):
-# 		return 1
-# 	else:
-# 		return 0
-
 def goods_search(searchstr,cursor):
 	#通过mysql like匹配搜索searchstr，并返回一个包含所有结果的Goods类列表
 	sql="select * from Goods where Name like '%"+searchstr+"%' or Description like '%"+searchstr+"%'"
@@ -56,7 +44,6 @@ def goods_search(searchstr,cursor):
 		return tmp
 		ret += tmp
 	return ret
-
 def cart_creat(User_id,g):
 	#创建新的购物车(不存在时),返回Cart_id
 	cursor = g.db.cursor()
@@ -74,7 +61,6 @@ def cart_creat(User_id,g):
 	cursor.execute(sql)
 	Cart_id = cursor.fetchone()[0]
 	return Cart_id
-	
 def cart_add(Goods_id,Count,User_id,g):
 	#添加新的商品到购物车，成功返回0，失败返回1
 	cursor = g.db.cursor()
@@ -100,7 +86,6 @@ def cart_add(Goods_id,Count,User_id,g):
 		sql = "update CartItem set Money=" + str(cnt*float(money)) + " where Cart_id='"+Cart_id+"' and Goods_id="+ str(Goods_id)
 	g.db.commit()
 	return 0
-
 def cart_get(User_id,cursor):
 	#获取购物车内商品，成功返回购物车，失败返回1
 	sql="select Cart_id from Cart where User_id='"+User_id+"'"
@@ -115,7 +100,6 @@ def cart_get(User_id,cursor):
 	for x in result:
 		ret += str(x[0]) + ' ' + str(x[1]) + ' ' + '价格：' + str(x[2]) + '\n'
 	return ret
-
 def cart_del(Goods_id,Count,User_id,g):
 	#修改购物车内商品数量，失败返回1
 	cursor = g.db.cursor()
@@ -137,34 +121,32 @@ def cart_del(Goods_id,Count,User_id,g):
 		cursor.execute(sql)
 		cnt = int(count[0]) - int(Count)
 		sql = "update CartItem set Money=" + str(cnt*float(money)) + " where Cart_id='"+Cart_id[0]+"' and Goods_id="+ Goods_id
-		# return sql
 		cursor.execute(sql)
 		g.db.commit()
 	return 0
 
-# def cart_buy(User_id,Note):
-# 	#将购物车内商品添加到订单，并下单,记录此次交易详情。成功返回0,失败返回1
-# 	cartlist=cart_get(User_id)
-# 	Money=0
-# 	for now in cartlist:
-# 		Money+=now.Money
-# 	sql="insert into Orderinfo values(uuid(),'"+User_id+"',now(),'"+str(Money)+"','"+Note+"',"+"false)"
-# 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
-# 	cursor = db.cursor()
-# 	cursor.execute(sql)
+def cart_buy(User_id,Note,g):
+	#将购物车内商品添加到订单，并下单,记录此次交易详情。成功返回0,失败返回1
+	cursor = g.db.cursor()		
+	sql = "select Cart_id from Cart where User_id='" + User_id + "'"
+	cursor.execute(sql)
+	cart_id = cursor.fetchone()[0]
 
-# 	sql="insert into CartRecord select * from Cart where User_id='"+User_id+"'"
-# 	cursor.execute(sql)
+	sql = "select sum(Money) from CartItem where Cart_id ='" + cart_id + "'"
+	cursor.execute(sql)
+	Money=cursor.fetchone()[0]
+	sql="insert into Orderinfo values(uuid(),'"+User_id+"',now(),'"+ Money +"','"+Note+"',"+"false)"
+	cursor.execute(sql)
 
-# 	Cart_id=cart_creat(User_id)
-# 	sql="select Count,Name,Money,Place,Image,Description from Goods natural join(select Count,Goods_id,Money from CartItem where Cart_id='"+Cart_id+"') as A "
-# 	print sql
-# 	cursor.execute(sql)
-# 	result=cursor.fetchall()
-# 	for now in result:
-# 		sql="insert into CartItemRecord values(uuid(),'"+Cart_id+"',"+str(now[0])+",'"+now[1]+"',"+str(now[2])+",'"+now[3]+"','"+now[4]+"','"+now[5]+"')"
-# 		print sql
-# 		cursor.execute(sql)
-# 	db.commit()
-# 	db.close()
-# 	return 0
+	sql="insert into CartRecord select * from Cart where User_id='"+User_id+"'"
+	cursor.execute(sql)
+
+	Cart_id=cart_creat(User_id)
+	sql="select Count,Name,Money,Place,Image,Description from Goods natural join(select Count,Goods_id,Money from CartItem where Cart_id='"+Cart_id+"') as A "
+	cursor.execute(sql)
+	result=cursor.fetchall()
+	for now in result:
+		sql="insert into CartItemRecord values(uuid(),'"+Cart_id+"',"+str(now[0])+",'"+now[1]+"',"+str(now[2])+",'"+now[3]+"','"+now[4]+"','"+now[5]+"')"
+		cursor.execute(sql)
+	g.db.commit()
+	return 0
