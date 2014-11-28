@@ -114,7 +114,7 @@ def cart_get(User_id,cursor):
 	return ret
 
 def cart_del(Goods_id,Count,User_id,g):
-	#修改购物车内商品数量，成功返回其余商品，失败返回1
+	#修改购物车内商品数量，失败返回1
 	sql="select Cart_id from Cart where User_id='"+User_id+"'"
 	cursor = g.db.cursor()
 	cursor.execute(sql)
@@ -124,7 +124,6 @@ def cart_del(Goods_id,Count,User_id,g):
 	sql="select Count from CartItem where Cart_id='"+Cart_id[0]+"' and Goods_id="+Goods_id
 	cursor.execute(sql)
 	count=cursor.fetchone()
-	return str(type(count))
 	if type(count) != type(None):
 		sql="update CartItem set Count= "+str(int(count[0]) - int(Count))+"where Cart_id='"+Cart_id[0]+"'and Goods_id="+str(Goods_id)
 		return sql
