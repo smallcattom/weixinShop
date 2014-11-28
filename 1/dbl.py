@@ -145,6 +145,7 @@ def cart_buy(User_id,Note,g):
 		return 'error'
 	Cart_id=cart_creat(User_id,g)
 	sql="select Count,Name,Money,Place,Image,Description from Goods natural join(select Count,Goods_id,Money from CartItem where Cart_id='"+Cart_id+"') as A "
+	return sql
 	cursor.execute(sql)
 
 	result=cursor.fetchall()
