@@ -125,7 +125,7 @@ def cart_del(Goods_id,Count,User_id,g):
 	cursor.execute(sql)
 	count=cursor.fetchone()
 	if type(count) != type(None):
-		sql="update CartItem set Count= "+str(int(count[0]) - int(Count))+"where Cart_id='"+Cart_id[0]+"'and Goods_id="+str(Goods_id)
+		sql="update CartItem set Count= "+str(int(count[0]) - int(Count))+" where Cart_id='"+Cart_id[0]+"' and Goods_id="+str(Goods_id)
 		cursor.execute(sql)
 		g.db.commit()
 	return 0
