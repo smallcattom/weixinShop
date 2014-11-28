@@ -135,7 +135,6 @@ def cart_buy(User_id,Note,g):
 	cursor.execute(sql)
 	Money=cursor.fetchone()[0]
 	sql="insert into Orderinfo values(uuid(),'"+User_id+"',now(),"+ str(Money) +",'"+ Note+"',"+"false)"
-	return sql
 	cursor.execute(sql)
 
 	sql="insert into CartRecord select * from Cart where User_id='"+User_id+"'"
