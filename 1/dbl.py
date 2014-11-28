@@ -134,6 +134,7 @@ def cart_buy(User_id,Note,g):
 	sql = "select sum(Money) from CartItem where Cart_id ='" + cart_id + "'"
 	cursor.execute(sql)
 	Money=cursor.fetchone()[0]
+	return str(type(Money))
 	sql="insert into Orderinfo values(uuid(),'"+User_id+"',now(),"#+ Money +",'"+ Note+"',"+"false)"
 	return sql
 	cursor.execute(sql)
