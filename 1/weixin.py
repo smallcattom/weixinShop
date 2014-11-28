@@ -70,7 +70,11 @@ def wechat_auth():
         elif arg[0] == '2':
             content = goods_search(arg[1],g.db.cursor())
         elif arg[0] == '3':
-            content = '下单成功'
+            content = cart_buy(fromUser,'备注',g)
+            if content == 1:
+                content = 'fail'
+            else:
+                content = '下单成功'
         elif arg[0] == '4':
             content = User_info(fromUser,g.db.cursor());
             if content == 1:
@@ -85,7 +89,10 @@ def wechat_auth():
             if content == 1:
                 content = 'error'
         elif arg[0] == '5':
-            content = cart_del(arg[1],arg[2],fromUser,g)
+            if cart_del(arg[1],arg[2],fromUser,g):
+                content = '删除失败'
+            else:
+                content = '成功'
         else:
             content = arg[0]
        
