@@ -85,7 +85,7 @@ def wechat_auth():
             if content == 1:
                 content = 'error'
         elif arg[0] == '5':
-            content = cart_del(arg[1],arg[2],fromUser)
+            content = cart_del(arg[1],arg[2],fromUser,g)
         else:
             content = arg[0]
        

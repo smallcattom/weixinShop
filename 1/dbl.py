@@ -121,7 +121,7 @@ def cart_del(Goods_id,Count,User_id,g):
 	Cart_id=cursor.fetchone()
 	if type(Cart_id) == type(None):
 		return 1
-	sql="select Count from CartItem where Cart_id='"+Cart_id[0]+"' and Goods_id="+str(Goods_id)
+	sql="select Count from CartItem where Cart_id='"+Cart_id[0]+"' and Goods_id="+Goods_id
 	cursor.execute(sql)
 	count=cursor.fetchone()
 	if type(count) != type(None):
