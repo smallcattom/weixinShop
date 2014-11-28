@@ -77,24 +77,27 @@ def cart_creat(User_id,g):
 	
 def cart_add(Goods_id,Count,User_id,g):
 	#添加新的商品到购物车，成功返回0，失败返回1
+	cursor = g.db.cursor()
+	sql = "select Price from Goods where Goods_id= " + Goods_id
+	cursor.execute(sql)
+	money = cursor.fetchone()[0]
+
 	Cart_id=cart_creat(User_id,g)
 	sql="select Count from CartItem where Cart_id='"+Cart_id+"' and Goods_id='"+Goods_id+"'"
-	cursor = g.db.cursor()
 	cursor.execute(sql)
 	fet=cursor.fetchone()
 	if type(fet) == type(None):
-		sql="select Price from Goods where Goods_id='"+Goods_id+"'"
+		sql="select Price from Goods where Goods_id="+Goods_id
 		cursor.execute(sql)
 		Price=cursor.fetchone()
 		if type(Price) != type(None):
-			# sql="insert into CartItem values(uuid(),'"+Cart_id+"',"+Count+","+Goods_id+","+Price[0]+")"
-			sql="insert into CartItem values(uuid(),'"+Cart_id+"',"+ str(Count)+","+ str(Goods_id) +","+ str(float(Price[0])*Count)+")"
-			# return sql
-			# sql = "select * from Cart"
+			sql="insert into CartItem values(uuid(),'"+Cart_id+"',"+ str(Count)+","+ str(Goods_id) +","+ str(float(Price[0])*float(Count))+")"
 			cursor.execute(sql)
 	else:
 		sql="update CartItem set Count="+str(int(fet[0])+Count)+" where Cart_id='"+Cart_id+"' and Goods_id="+ str(Goods_id)
 		cursor.execute(sql)
+		cnt = int(fet[0]) + Count
+		sql = "update CartItem set Money=" + str(cnt*float(money)) + " where Cart_id='"+Cart_id+"' and Goods_id="+ str(Goods_id)
 	g.db.commit()
 	return 0
 
