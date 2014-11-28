@@ -70,7 +70,7 @@ def wechat_auth():
         elif arg[0] == '2':
             content = goods_search(arg[1],g.db.cursor())
         elif arg[0] == '3':
-            content = cart_buy(fromUser,'备注',g)
+            content = cart_buy(fromUser,'hello',g)
             # if content == 1:
             #     content = 'fail'
             # else:
