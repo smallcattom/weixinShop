@@ -101,12 +101,11 @@ def cart_add(Goods_id,Count,User_id,g):
 def cart_get(User_id,cursor):
 	#获取购物车内商品，成功返回购物车，失败返回1
 	sql="select Cart_id from Cart where User_id='"+User_id+"'"
-	return 'herer'
-
 	cursor.execute(sql)
 	Cart_id=cursor.fetchone()
-	if(type(Cart_id)==type(None)):
+	if type(Cart_id) == type(None):
 		return 1
+	return 'herer'
 	sql="select Name,Count,Money from CartItem natural join Goods where Cart_id='"+Cart_id[0]+"'"
 	cursor.execute(sql)
 	result=cursor.fetchall()
