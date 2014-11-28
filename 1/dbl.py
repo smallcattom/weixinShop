@@ -111,7 +111,7 @@ def cart_get(User_id,cursor):
 	#return result[0][0]
 	ret = ''
 	for x in result:
-		ret += x[0] + ' ' + str(x[1]) + ' ' + '价格：' + str(x[2]) + '\n'
+		ret += str(x[0]) + ' ' + str(x[1]) + ' ' + '价格：' + str(x[2]) + '\n'
 	return ret
 
 # def cart_del(Goods_id,Count,User_id):
