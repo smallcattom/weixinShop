@@ -146,11 +146,11 @@ def cart_buy(User_id,Note,g):
 	Cart_id=cart_creat(User_id,g)
 	sql="select Count,Name,Money,Place,Image,Description from Goods natural join(select Count,Goods_id,Money from CartItem where Cart_id='"+Cart_id+"') as A "
 	cursor.execute(sql)
-	return sql
 
 	result=cursor.fetchall()
 	for now in result:
 		sql="insert into CartItemRecord values(uuid(),'"+Cart_id+"',"+str(now[0])+",'"+str(now[1])+"',"+str(now[2])+",'"+now[3].encode('utf8') +"','"+now[4].encode('utf8') +"','"+now[5].encode('utf8') +"')"
+		return sql
 		cursor.execute(sql)
 
 	sql = "delete from CartItem where Cart_id = '" + cart_id + "'"
