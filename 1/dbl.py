@@ -124,7 +124,6 @@ def cart_del(Goods_id,Count,User_id,g):
 		cursor.execute(sql)
 		g.db.commit()
 	return 0
-
 def cart_buy(User_id,Note,g):
 	#将购物车内商品添加到订单，并下单,记录此次交易详情。成功返回0,失败返回1
 	cursor = g.db.cursor()		
@@ -139,7 +138,6 @@ def cart_buy(User_id,Note,g):
 
 	try:
 		sql="insert into CartRecord select * from Cart where User_id='"+User_id+"'"
-		# return sql
 		cursor.execute(sql)
 	except:
 		return 'error'
@@ -151,7 +149,6 @@ def cart_buy(User_id,Note,g):
 	for now in result:
 		sql="insert into CartItemRecord values(uuid(),'"+Cart_id+"',"+str(now[0])+",'"+str(now[1])+"',"+str(now[2])+",'"+ now[3] +"','"+now[4] +"','"+now[5] +"')"
 		cursor.execute(sql)
-		# return sql
 	sql = "delete from CartItem where Cart_id = '" + cart_id + "'"
 	cursor.execute(sql)
 	sql = "delete from Cart where User_id = '" + User_id + "'"
