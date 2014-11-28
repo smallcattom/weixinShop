@@ -137,7 +137,7 @@ def cart_del(Goods_id,Count,User_id,g):
 		cursor.execute(sql)
 		cnt = int(count[0]) - int(Count)
 		sql = "update CartItem set Money=" + str(cnt*float(money)) + " where Cart_id='"+Cart_id[0]+"' and Goods_id="+ Goods_id
-		return sql
+		# return sql
 		cursor.execute(sql)
 		g.db.commit()
 	return 0
