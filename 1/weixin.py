@@ -84,6 +84,8 @@ def wechat_auth():
             content = cart_get(fromUser,g.db.cursor())
             if content == 1:
                 content = 'error'
+        elif arg[0] == '5':
+            
         else:
             content = arg[0]
        

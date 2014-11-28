@@ -108,31 +108,27 @@ def cart_get(User_id,cursor):
 	sql="select Name,Count,Money from CartItem natural join Goods where Cart_id='"+Cart_id[0]+"'"
 	cursor.execute(sql)
 	result=cursor.fetchall()
-	#return result[0][0]
 	ret = ''
 	for x in result:
 		ret += str(x[0]) + ' ' + str(x[1]) + ' ' + '价格：' + str(x[2]) + '\n'
 	return ret
 
-# def cart_del(Goods_id,Count,User_id):
-# 	#修改购物车内商品数量，成功返回其余商品，失败返回1
-# 	sql="select Cart_id from Cart where User_id='"+User_id+"'"
-# 	db = MySQLdb.connect(host,user,password,database,port=int(sae.const.MYSQL_PORT),charset='utf8')
-# 	cursor = db.cursor()
-# 	cursor.execute(sql)
-# 	Cart_id=cursor.fetchone()
-# 	if(type(Cart_id)==type(None)):
-# 		db.close()
-# 		return 1
-# 	sql="select Count from CartItem where Cart_id='"+Cart_id[0]+"' and Goods_id='"+Goods_id+"'"
-# 	cursor.execute(sql)
-# 	count=cursor.fetchone()
-# 	if(type(count)!=type(None)):
-# 		sql="update CartItem set Count='"+str(int(count[0])-int(Count))+"'where Cart_id='"+Cart_id[0]+"'and Goods_id='"+Goods_id+"'"
-# 		cursor.execute(sql)
-# 		db.commit()
-# 	db.close()
-# 	return cart_get(User_id)
+def cart_del(Goods_id,Count,User_id,g):
+	#修改购物车内商品数量，成功返回其余商品，失败返回1
+	sql="select Cart_id from Cart where User_id='"+User_id+"'"
+	cursor = g.db.cursor()
+	cursor.execute(sql)
+	Cart_id=cursor.fetchone()
+	if type(Cart_id) == type(None):
+		return 1
+	sql="select Count from CartItem where Cart_id='"+Cart_id[0]+"' and Goods_id="+str(Goods_id)
+	cursor.execute(sql)
+	count=cursor.fetchone()
+	if type(count) != type(None):
+		sql="update CartItem set Count= "+str(int(count[0]) - Count)+"where Cart_id='"+Cart_id[0]+"'and Goods_id="+str(Goods_id)
+		cursor.execute(sql)
+		g.db.commit()
+	return 0
 
 # def cart_buy(User_id,Note):
 # 	#将购物车内商品添加到订单，并下单,记录此次交易详情。成功返回0,失败返回1
