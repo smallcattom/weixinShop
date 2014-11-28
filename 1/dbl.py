@@ -124,6 +124,7 @@ def cart_del(Goods_id,Count,User_id,g):
 	sql="select Count from CartItem where Cart_id='"+Cart_id[0]+"' and Goods_id="+Goods_id
 	cursor.execute(sql)
 	count=cursor.fetchone()
+	return str(type(count))
 	if type(count) != type(None):
 		sql="update CartItem set Count= "+str(int(count[0]) - int(Count))+"where Cart_id='"+Cart_id[0]+"'and Goods_id="+str(Goods_id)
 		return sql
