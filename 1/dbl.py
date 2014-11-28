@@ -137,15 +137,19 @@ def cart_buy(User_id,Note,g):
 	sql="insert into Orderinfo values(uuid(),'"+User_id+"',now(),"+ str(Money) +",'"+ Note+"',"+"false)"
 	cursor.execute(sql)
 
-	sql="insert into CartRecord select * from Cart where User_id='"+User_id+"'"
-	cursor.execute(sql)
+	try:
+		sql="insert into CartRecord select * from Cart where User_id='"+User_id+"'"
+		cursor.execute(sql)
+	except:
+		return 'error'
 
 	Cart_id=cart_creat(User_id,g)
 	sql="select Count,Name,Money,Place,Image,Description from Goods natural join(select Count,Goods_id,Money from CartItem where Cart_id='"+Cart_id+"') as A "
 	cursor.execute(sql)
+
 	result=cursor.fetchall()
 	for now in result:
-		sql="insert into CartItemRecord values(uuid(),'"+Cart_id+"',"+str(now[0])+",'"+now[1]+"',"+str(now[2])+",'"+now[3]+"','"+now[4]+"','"+now[5]+"')"
+		sql="insert into CartItemRecord values(uuid(),'"+Cart_id+"',"+str(now[0])+",'"+str(now[1])+"',"+str(now[2])+",'"+now[3].encode('utf8') +"','"+now[4].encode('utf8') +"','"+now[5].encode('utf8') +"')"
 		cursor.execute(sql)
 
 	sql = "delete from CartItem where Cart_id = '" + cart_id + "'"
