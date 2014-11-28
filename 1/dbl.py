@@ -93,7 +93,7 @@ def cart_add(Goods_id,Count,User_id,g):
 			# sql = "select * from Cart"
 			cursor.execute(sql)
 	else:
-		sql="update CartItem set Count="+str(int(count[0])+int(Count))+" where Cart_id='"+Cart_id+"' and Goods_id='"+Goods_id+"'"
+		sql="update CartItem set Count="+str(int(fet[0])+Count)+" where Cart_id='"+Cart_id+"' and Goods_id="+ str(Goods_id)
 		cursor.execute(sql)
 	g.db.commit()
 	return 0
