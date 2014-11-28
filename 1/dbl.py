@@ -129,6 +129,7 @@ def cart_buy(User_id,Note,g):
 	cursor = g.db.cursor()		
 	sql = "select Cart_id from Cart where User_id='" + User_id + "'"
 	cursor.execute(sql)
+	if cursor.rowcount == 0:return 1
 	cart_id = cursor.fetchone()[0]
 	sql = "select sum(Money) from CartItem where Cart_id ='" + cart_id + "'"
 	cursor.execute(sql)
