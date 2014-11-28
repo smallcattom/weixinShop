@@ -71,10 +71,10 @@ def wechat_auth():
             content = goods_search(arg[1],g.db.cursor())
         elif arg[0] == '3':
             content = cart_buy(fromUser,'备注',g)
-            if content == 1:
-                content = 'fail'
-            else:
-                content = '下单成功'
+            # if content == 1:
+            #     content = 'fail'
+            # else:
+            #     content = '下单成功'
         elif arg[0] == '4':
             content = User_info(fromUser,g.db.cursor());
             if content == 1:
