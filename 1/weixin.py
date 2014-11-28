@@ -16,12 +16,10 @@ def before_request():
 def teardown_request(exception):
     if hasattr(g, 'db'): g.db.close()
 
-
 SUCCESS = 'Success'
 FAIL = 'Fail'
 # h口令 对应的输出
-msg = '命令格式:\n用户个人信息修改:\n1 选项id  新内容     注：0：地址 1：名字 2：电话\n商品查找:\n2 商品名\n下单:\n3\n用户信息查询:\n4\n删除购物车商品:\n5 商品id 数量\n查看购物车:\n6\n添加购物车:\n7  商品id 数量\n留言:\n 8 留言'
-warning = '命令错误，请输入h查看帮助信息\n'
+msg = '命令格式:\n用户个人信息修改:\n1 选项id  新内容     注：0：地址 1：名字 2：电话\n商品查找:\n2 商品名\n下单:\n3 备注内容\n用户信息查询:\n4\n删除购物车商品:\n5 商品id 数量\n查看购物车:\n6\n添加购物车:\n7  商品id 数量\n留言:\n 8 留言'
 @app.route('/',methods=['GET','POST'])
 def wechat_auth():
     if request.method == 'GET':
@@ -63,7 +61,9 @@ def wechat_auth():
         if arg[0] == 'h':
             content = msg
         elif arg[0] == '1': 
-            if User_alter(fromUser,arg[1],arg[2],g):
+            if len(arg) != 3:
+                content = '格式错误\n信息修改格式为：1 选项id 新内容'
+            elif User_alter(fromUser,arg[1],arg[2],g):
                 content = FAIL
             else:
                 content = SUCCESS
@@ -73,34 +73,46 @@ def wechat_auth():
             else:
                 content = goods_search(arg[1],g.db.cursor())
         elif arg[0] == '3':
-            if len(arg) != 1:
-                content = '格式错误\n下单命令格式：3'
+            if len(arg) != 2:
+                content = '格式错误\n下单命令格式：3 备注内容'
             else:
-                content = cart_buy(fromUser,'hello',g)
+                content = cart_buy(fromUser,arg[1],g)
                 if content == 1:
                     content = '购物车没有商品待下单'
                 else:
                     content = '下单成功'
         elif arg[0] == '4':
-            content = User_info(fromUser,g.db.cursor());
-            if content == 1:
-                content = 'error'
+            if len(arg) != 1:
+                content = '格式错误\n用户信息查找格式为：4'
+            else:
+                content = User_info(fromUser,g.db.cursor());
+                if content == 1:
+                    content = 'error'
         elif arg[0] == '7':
-            if cart_add(arg[1],int(arg[2]),fromUser,g):
+            if len(arg) != 3:
+                content = '格式错误\n商品查找格式为：7 商品id 数量'
+            elif cart_add(arg[1],int(arg[2]),fromUser,g):
                 content = '添加购物车失败'
             else:
                 content = '添加购物车成功'
         elif arg[0] == '6':
-            content = cart_get(fromUser,g.db.cursor())
-            if content == 1:
-                content = '购物车为空'
+            if len(arg) != 1:
+                content = '格式错误\n查看购物车格式为：6'
+            else:
+                content = cart_get(fromUser,g.db.cursor())
+                if content == 1:
+                    content = '购物车为空'
         elif arg[0] == '5':
-            if cart_del(arg[1],arg[2],fromUser,g):
+            if len(arg) != 3:
+                content = '格式错误\n删除购物车商品命令格式：5 商品id 数量'
+            elif cart_del(arg[1],arg[2],fromUser,g):
                 content = '删除失败'
             else:
                 content = '成功'
+        elif arg[0] == '8':
+            content = '‘' + arg[1] + '’\n 留言成功'
         else:
-            content = arg[0]
+            content = '没有该命令，请输入命令h查找'
        
 #*******************************output************************
         xml_rep = "<xml><ToUserName><![CDATA[%s]]></ToUserName><FromUserName><![CDATA[%s]]></FromUserName><CreateTime>%s</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[%s]]></Content><FuncFlag>0</FuncFlag></xml>"
