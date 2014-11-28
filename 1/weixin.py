@@ -68,7 +68,7 @@ def wechat_auth():
             else:
                 content = SUCCESS
         elif arg[0] == '2':
-            if len(arg) > 2:
+            if len(arg) != 2:
                 content = '格式错误\n商品查找格式为：2 商品名'
             else:
                 content = goods_search(arg[1],g.db.cursor())
