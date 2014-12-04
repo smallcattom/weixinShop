@@ -106,7 +106,7 @@ def wechat_auth():
             if len(arg) != 3:
                 content = '格式错误\n删除购物车商品命令格式：5 商品id 数量'
             elif cart_del(arg[1],arg[2],fromUser,g):
-                content = '删除失败'
+                content = '删除失败，购物车为空'
             else:
                 content = '成功'
         elif arg[0] == '8':
