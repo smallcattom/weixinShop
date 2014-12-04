@@ -105,10 +105,12 @@ def cart_del(Goods_id,Count,User_id,g):
 	cursor = g.db.cursor()
 	sql = "select Price from Goods where Goods_id= " + Goods_id
 	cursor.execute(sql)
+	if cursor.rowcount == 0:return 1
 	money = cursor.fetchone()[0]
 
 	sql="select Cart_id from Cart where User_id='"+User_id+"'"
 	cursor.execute(sql)
+
 	Cart_id=cursor.fetchone()
 
 	if type(Cart_id) == type(None):
