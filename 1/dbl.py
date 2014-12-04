@@ -7,7 +7,7 @@ def User_add(Openid,Name,Addr,Tel,cursor):
     cursor.execute(sql)
     return 0
 def User_alter(User_id,operator,Parameter,g):
-	# 修改用户,成功返回用户信息，失败返回1
+	# 修改用户,成功返回0，失败返回1
 	# 	0：修改地址
 	# 	1：修改收货人
 	# 	2：修改电话
